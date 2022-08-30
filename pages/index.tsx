@@ -1,25 +1,39 @@
 import { NextPage } from 'next'
+import Button from '../components/Button';
 import styles from '../styles/pages/Home.module.css'
+import { FiLogIn } from 'react-icons/fi'
+import HeaderBanner from '../assets/HEADER.png'
+import Image from 'next/image';
+import NavBar from '../components/NavBar';
+import Footer from '../components/Footer';
+import Title from '../components/Title';
+import Link from 'next/link';
 
 const Home: NextPage = () => {
   return (
     <main className={styles.container}>
-      <h1>ct de portas abertas ufes 2022</h1>
+      <NavBar />
+
+      <Image src={HeaderBanner} alt="Banner CT Portas Abertas"/>
+
+      <Title />
 
       <form>
-        <span>credenciais</span>
-        <input type={"email"} placeholder={"email"} />
-        <input type={"password"} placeholder={"senha"} />
+        <span>CREDENCIAIS</span>
+        <input type={"email"} placeholder={"EMAIL"} />
+        <input type={"password"} placeholder={"SENHA"} />
 
         <div className={styles.bottomForm}>
-          <span>esqueci a senha</span>
-          <span>cadastrar</span>
+          <span>ESQUECI A SENHA</span>
+          <Link href="./signup">
+            <span><FiLogIn size={30} style={{marginRight: '5px'}}/> CADASTRAR</span>
+          </Link>
         </div>
       </form>
 
-      <button>
-        fazer login
-      </button>
+      <Button text="FAZER LOGIN" />
+
+      <Footer />
     </main>
   )
 }
