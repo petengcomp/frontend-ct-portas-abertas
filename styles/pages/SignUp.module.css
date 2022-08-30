@@ -1,0 +1,58 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.container h1, .container h2 {
+  font-weight: 100;
+}
+
+.signTypeContainer {
+  display:flex;
+  justify-content:space-between;
+  width: 40%;
+  margin: 1rem auto;
+  color: var(--darkBlue);
+}
+
+.innerTypeContainer {
+  font-size: 100pt;
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content: center;
+  color: var(--darkBlue);
+  cursor: pointer;
+  transition: .2s ease-out;
+}
+
+.innerTypeContainer:hover {
+  color: var(--orange);
+}
+
+#selected {
+  color: white;
+}
+
+.innerTypeContainer p {
+  font-size: 25pt;
+  margin-top: 0px;
+}
+
+.dividerLineContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+  color: var(--darkBlue);
+}
+
+.dividerLine {
+  border-left: 2px solid var(--darkBlue);
+  border-radius: 2px;
+  height: 7rem;
+  width: 2px;
+}

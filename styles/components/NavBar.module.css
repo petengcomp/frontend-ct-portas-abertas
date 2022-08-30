@@ -1,0 +1,41 @@
+.navbarContainer {
+  height: 5rem;
+  width: 100%;
+  background-color: var(--darkBlue);
+  display: flex;
+  justify-content: center;
+}
+
+.logoContainer {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  height: 40px;
+  width: 40px;
+}
+
+.navbarContainer ul {
+  list-style:none;
+  display:flex;
+  justify-content: space-between;
+  width: 90%;
+  color: white;
+  font-size: 15pt;
+  cursor: pointer;
+}
+
+.navbarContainer ul li {
+  transition: .3s;
+  width: 100%;
+  text-align: center;
+}
+
+.navbarContainer ul li:hover {
+  color: var(--orange);
+  transform: scale(.9);
+}
+
+#selected {
+  color: var(--orange);
+  font-size: 17pt;
+}

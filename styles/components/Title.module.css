@@ -1,0 +1,19 @@
+.title {
+  width: 20rem;
+  text-align: center;
+  color: white;
+  display:flex;
+  flex-direction: column;
+}
+
+.title h1 {
+  font-weight: 100;
+  font-size: 40pt;
+  line-height: 35pt;
+  margin-bottom: 0;
+}
+
+.title span {
+  font-size: 30pt;
+  color: var(--darkBlue);
+}

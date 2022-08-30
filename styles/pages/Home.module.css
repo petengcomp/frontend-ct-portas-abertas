@@ -1,19 +1,14 @@
 .container {
-  background-color: var(--mediumBlue);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  width: 100vw;
-}
-
-.container h1 {
-  text-transform: uppercase;
+  width: 100%;
 }
 
 .container form  {
-  width: 60%;
+  width: 35%;
+  margin: 2rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,10 +16,9 @@
 }
 
 .container form span {
-  padding: 10px 0;
   color: var(--darkBlue);
-  font-weight: bold;
-  text-transform: uppercase;
+  font-weight: 100;
+  font-size: 20pt;
 }
 
 .container form > span {
@@ -33,37 +27,45 @@
 }
 
 .container form input {
-  padding: 0.50rem 0;
-  padding-left: 10px;
-  height: 40px;
-  margin: 10px 0;
+  padding: 2rem 0;
+  padding-left: 2rem;
+  height: 80px;
+  margin: 0.2rem 0;
   background-color: var(--darkBlue);
   border-radius: 5px;
   width: 100%;
   border: none;
+  font-size: 17pt;
+  color: white;
 }
 
 .container form input::placeholder {
-  text-transform: uppercase;
   font-weight: bold;
+  color: var(--lightBlue);
 }
 
 .container form input:focus {
   outline: 2px solid var(--orange);
 }
 
-.container button {
-  padding: 15px 60px;
-  text-transform: uppercase;
-  background-color: var(--orange);
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
 .container .bottomForm {
   width: 100%;
   display: flex;
   justify-content: space-between;
+}
+
+.container .bottomForm span:first-child {
+  color: var(--orange);
+}
+
+.container .bottomForm span {
+  color: white;
+  display:flex;
+  align-items: center;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.container .bottomForm span:hover {
+  color: var(--darkBlue);
 }
