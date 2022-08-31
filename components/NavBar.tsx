@@ -20,8 +20,15 @@ export default function NavBar() {
         <Link href="./">
           <li id={styles.selected}>PÁGINA INICIAL</li>
         </Link>
-        <li>PROGRAMAÇÃO</li>
-        <li>PALESTRANTES</li>
+
+        <Link href="./events">
+          <li>PROGRAMAÇÃO</li>
+        </Link>
+
+        <Link href="./speakers">
+          <li>PALESTRANTES</li>
+        </Link>
+
         <Link href="./signup">
           <li>CADASTRO</li>
         </Link>
