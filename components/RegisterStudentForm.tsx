@@ -1,5 +1,4 @@
-import React from 'react'
-import styles from '../styles/components/RegisterStudentForm.module.css'
+import styles from '../styles/components/RegisterForms.module.css'
 import Button from './Button'
 
 export const RegisterStudentForm = () => {
