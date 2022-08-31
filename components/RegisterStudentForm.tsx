@@ -19,11 +19,11 @@ export const RegisterStudentForm = () => {
         </div>
 
         <div>
-          <input type={'text'} /><br />
-          <label>CPF do responsável</label><br />
-
           <input type={'number'} /><br />
-          <label>Número de alunos</label><br />
+          <label>CPF (apenas números)</label><br />
+
+          <input type={'email'} /><br />
+          <label>Email</label><br />
         </div>
       </form>
 

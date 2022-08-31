@@ -14,9 +14,6 @@ export const RegisterSchoolForm = () => {
           <input type={'text'} /><br />
           <label>Nome do responsável</label><br />
 
-          <input type={'email'} /><br />
-          <label>Email do responsável</label><br />
-
           <input type={'password'} /><br />
           <label>Senha</label><br />
 
@@ -25,10 +22,13 @@ export const RegisterSchoolForm = () => {
         </div>
 
         <div>
-          <input type={'text'} /><br />
-          <label>CPF do responsável</label><br />
+          <input type={'number'} /><br />
+          <label>CPF do responsável (apenas números)</label><br />
 
           <input type={'email'} /><br />
+          <label>Email do responsável</label><br />
+          
+          <input type={'number'} /><br />
           <label>Número de alunos</label><br />
         </div>
       </form>
