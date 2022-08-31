@@ -4,7 +4,7 @@ interface ButtonProps {
   text: string
 }
 
-export default function Button({text}:ButtonProps) {
+export default function Button({ text }: ButtonProps) {
 
   return (
     <button className={styles.bt}>{text}</button>
