@@ -8,6 +8,7 @@ import Title from '../components/Title';
 import { FiUsers, FiUser } from 'react-icons/fi'
 import { useState } from 'react';
 import { RegisterStudentForm } from '../components/RegisterStudentForm';
+import { RegisterSchoolForm } from '../components/RegisterSchoolForm';
 
 const SignUp: NextPage = () => {
 
@@ -48,9 +49,8 @@ const SignUp: NextPage = () => {
           <p>Cadastro Aluno</p>
         </div>
       </div>
-
       {
-        signType == 0 ? <h1>cadastrando escola</h1> : signType == 1 ? <RegisterStudentForm /> : ""
+        signType == 0 ? <RegisterSchoolForm /> : signType == 1 ? <RegisterStudentForm /> : ""
       }
 
       <Footer />
