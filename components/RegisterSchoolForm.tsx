@@ -26,10 +26,10 @@ export const RegisterSchoolForm = () => {
 
         <div>
           <input type={'text'} /><br />
-          <label>CPF</label><br />
+          <label>CPF do responsável</label><br />
 
           <input type={'email'} /><br />
-          <label>Email</label><br />
+          <label>Número de alunos</label><br />
         </div>
       </form>
 
