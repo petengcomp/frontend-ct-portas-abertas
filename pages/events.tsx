@@ -5,6 +5,7 @@ import styles from '../styles/pages/Events.module.css'
 import HeaderBanner from '../assets/HEADER.png'
 import Footer from "../components/Footer";
 import Title from "../components/Title";
+import Table from "../components/Table";
 
 const Events: NextPage = () => {
     return (
@@ -16,6 +17,8 @@ const Events: NextPage = () => {
             <Title />
 
             <h1>Eventos</h1>
+
+            <Table />
 
             <Footer />
         </main>
