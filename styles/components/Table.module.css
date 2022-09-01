@@ -1,33 +1,38 @@
 .EventsContainer {
     display: flex;
-    
+    margin-top: 10vh;
+    margin-bottom: 20vh;
     width: 100%;
 }
 .EventsTable {
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
     border-collapse: collapse;
 }
+.EventsTable th{
+    font-size: 32px;
+    color: var(--darkBlue);
+}
 .EventsTable th:nth-child(2) {
-    border-right: 2px solid var(--orange);
+    border-right: 2px solid var(--darkBlue);
 }
 .EventsTable td {
     width: 40%;
 }
 .EventsTable td:first-child{
     width: 20%;
-    font-size: larger;
+    font-size: 30px;
     vertical-align: top;
     padding: 15px;
 }
 .EventsTable td:nth-child(2) {
-    border-right: 2px solid var(--orange);
+    border-right: 2px solid var(--darkBlue);
 }
 .EventsTable tr:nth-of-type(2n+1) {
-    background-color: var(--dark);
+    background-color: var(--mediumBlue);
 }
 .EventsTable tr:nth-of-type(2n) {
-    background-color: var(--darkBlue);
+    background-color: var(--lightBlue);
 }
 .EventsTable tr{
     height: 80px;

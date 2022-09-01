@@ -6,6 +6,7 @@ import HeaderBanner from '../assets/HEADER.png'
 import Footer from "../components/Footer";
 import Title from "../components/Title";
 import Table from "../components/Table";
+import Button from "../components/Button";
 
 const Events: NextPage = () => {
     return (
@@ -16,9 +17,11 @@ const Events: NextPage = () => {
 
             <Title />
 
-            <h1>Eventos</h1>
+            <h1>INSCRIÇÃO NOS EVENTOS</h1>
 
             <Table />
+
+            <Button text="Salvar Inscrições"/>
 
             <Footer />
         </main>
