@@ -1,29 +1,34 @@
-import styles from '../styles/components/EventBox.module.css'
+import styles from "../styles/components/EventBox.module.css";
 
-interface EventBoxProps {
-    titulo: string,
-    descricao?: string,
-    vagasTotais: number,
-    vagas: number,
-    color: string
-  }
+export interface EventBoxProps {
+  id: number;
+  selected: boolean;
+  title: string;
+  description?: string;
+  capacity: number;
+  filled: number;
+  time: Date;
+}
 
-export default function EventBox({ titulo, descricao, vagasTotais, vagas, color }: EventBoxProps) {
-    return(
-        descricao ?
-
-    <div className={styles.EventBoxContainer} style={{backgroundColor: color}}>
-        {titulo}<br/>
-        {descricao}<br/>
-        {vagas}/{vagasTotais} Vagas Ocupadas
-    </div>  
-    
-    :                                                                                           // talvez essa seja a maior gambiarra já feita...
-
-    <div className={styles.EventBoxContainer} style={{backgroundColor: color}}>
-        {titulo}<br/>
-        {vagas}/{vagasTotais} Vagas Ocupadas
-    </div> 
-
-    )
+export default function EventBox({
+  selected,
+  title,
+  description,
+  capacity,
+  filled,
+}: EventBoxProps) {
+  return (
+    <div
+      className={styles.EventBoxContainer}
+      id={selected?styles.selected:styles.unselected}
+    >
+      <ul>
+        <li>{title}</li>
+        {description ? <li>{description}</li> : ""}
+        <li>
+          {filled}/{capacity} Vagas Ocupadas
+        </li>
+      </ul>
+    </div>
+  );
 }
