@@ -13,18 +13,23 @@
     font-size: 32px;
     color: var(--darkBlue);
 }
+
+.EventsTable tbody tr th {
+    font-weight: 100;
+}
+
 .EventsTable th:nth-child(2) {
     border-right: 2px solid var(--darkBlue);
 }
-.EventsTable td {
-    width: 40%;
-}
 .EventsTable td:first-child{
-    width: 20%;
-    font-size: 30px;
-    vertical-align: top;
-    padding: 15px;
+    width: 13rem;
+    font-size: 16pt;
+    margin: auto 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 .EventsTable td:nth-child(2) {
     border-right: 2px solid var(--darkBlue);
 }
