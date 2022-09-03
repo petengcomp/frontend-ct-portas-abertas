@@ -1,3 +1,1 @@
 # frontend-ct-portas-abertas
-
-
