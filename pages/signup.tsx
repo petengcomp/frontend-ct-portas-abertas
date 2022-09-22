@@ -6,13 +6,17 @@ import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import Title from '../components/Title';
 import { FiUsers, FiUser } from 'react-icons/fi'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { RegisterStudentForm } from '../components/RegisterStudentForm';
 import { RegisterSchoolForm } from '../components/RegisterSchoolForm';
 
 const SignUp: NextPage = () => {
 
   const [signType, setSignType] = useState(-1);
+
+  useEffect(()=>{
+    localStorage.setItem('CTPORTASABERTASPAGE', 'signup')
+  }, [])
 
   return (
     <main className={styles.container}>

@@ -5,8 +5,14 @@ import styles from '../styles/pages/Speakers.module.css'
 import HeaderBanner from '../assets/HEADER.png'
 import Footer from "../components/Footer";
 import Title from "../components/Title";
+import { useEffect } from "react";
 
 const Speakers: NextPage = () => {
+    
+    useEffect(()=>{
+        localStorage.setItem('CTPORTASABERTASPAGE', 'speakers')
+    }, [])
+    
     return (
         <main className={styles.container}>
             <NavBar />

@@ -2,10 +2,16 @@ import styles from '../styles/components/NavBar.module.css'
 import UfesLogo from '../assets/UfesLogo.svg'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 
 
 export default function NavBar() {
+  const [page,setPage] = useState<string | null>("");
+
+  useEffect(()=>{
+    setPage(localStorage.getItem('CTPORTASABERTASPAGE'))
+  },[])
 
   return (
     <div className={styles.navbarContainer}>
@@ -18,19 +24,19 @@ export default function NavBar() {
       </div>
       <ul>
         <Link href="./">
-          <li id={styles.selected}>PÁGINA INICIAL</li>
+          <li id={page=='index'?styles.selected:""}>PÁGINA INICIAL</li>
         </Link>
 
         <Link href="./events">
-          <li>PROGRAMAÇÃO</li>
+          <li id={page=='events'?styles.selected:""}>PROGRAMAÇÃO</li>
         </Link>
 
         <Link href="./speakers">
-          <li>PALESTRANTES</li>
+          <li id={page=='speakers'?styles.selected:""}>PALESTRANTES</li>
         </Link>
 
         <Link href="./signup">
-          <li>CADASTRO</li>
+          <li id={page=='signup'?styles.selected:""}>CADASTRO</li>
         </Link>
       </ul>
     </div>

@@ -1,68 +1,72 @@
-import { useState } from "react";
+import Router from "next/router";
+import { useEffect, useState } from "react";
+import { api } from "../services/api";
 import styles from "../styles/components/Table.module.css";
 import { EventBoxProps } from "./EventBox";
 import { ScheduleColumn } from "./ScheduleColumn";
 
-export default function Table() {
-  const visitations: Array<EventBoxProps> = [
-    {
-      id: 1,
-      title: "Projeto Solares",
-      time: new Date(2022, 9, 2, 7, 0, 0, 0),
-      capacity: 20,
-      filled: 3,
-      selected: false,
-    },
-    {
-      id: 2,
-      title: "Projeto Solares",
-      time: new Date(2022, 9, 2, 7, 0, 0, 0),
-      capacity: 20,
-      filled: 0,
-      selected: false,
-    },
-    {
-      id: 3,
-      title: "Projeto Aves",
-      time: new Date(2022, 9, 2, 20, 0, 0, 0),
-      capacity: 20,
-      filled: 0,
-      selected: false,
-    },
-  ];
+interface TableProps {
+  selectedEvents: Array<number>
+  setSelectedEvents: Function
+  showSubscriptions: Boolean
+}
 
-  const workshops: Array<EventBoxProps> = [
-    {
-      id: 4,
-      title: "PET Elétrica",
-      description: "Oficina de arduino",
-      time: new Date(2022, 9, 2, 15, 0, 0, 0),
-      capacity: 20,
-      filled: 3,
-      selected: false,
-    },
-    {
-      id: 5,
-      title: "PET Mecânica",
-      description: "Oficina de proteses",
-      time: new Date(2022, 9, 2, 12, 0, 0, 0),
-      capacity: 20,
-      filled: 0,
-      selected: false,
-    },
-    {
-      id: 6,
-      title: "PET Resenhas",
-      description: "Clube do livro seila",
-      time: new Date(2022, 9, 2, 12, 0, 0, 0),
-      capacity: 20,
-      filled: 0,
-      selected: false,
-    },
-  ];
-
-  const [selectedEvents, setSelectedEvents] = useState<Array<number>>([]);
+export default function Table({selectedEvents, setSelectedEvents, showSubscriptions}:TableProps) {
+  const [events, setEvents] = useState<Array<EventBoxProps>>([]);
+  const [subEvents, setSubEvents] = useState<Array<EventBoxProps>>([]);
+  const [subscribed, setSubscribed] = useState<Array<number>>([]);
+  
   const times = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+
+  async function fetchEvents(){
+    let subscribedEvents:Array<number> = [];
+    const authType = localStorage.getItem('CTPORTASABERTASAUTHTYPE')
+    
+    try{
+      const response = await api.get(`${authType}/events/${localStorage.getItem('CTPORTASABERTASAUTHID')}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('CTPORTASABERTASTOKEN')}` }
+      })
+      response.data?.map((e:EventBoxProps)=>{
+        subscribedEvents = [...subscribedEvents, e.id]
+      })
+      setSubscribed(subscribedEvents)
+      setSubEvents(response.data)
+    } catch {
+      try{
+        let response = await api.put('token/refresh', {
+          "oldToken":localStorage.getItem('CTPORTASABERTASTOKEN')
+        })
+
+        localStorage.setItem('CTPORTASABERTASTOKEN', response.data.access_token);
+        response = await api.get(`${authType}/events/${localStorage.getItem('CTPORTASABERTASAUTHID')}`, {
+          headers: { Authorization: `Bearer ${localStorage.getItem('CTPORTASABERTASTOKEN')}` }
+        })
+        response.data?.map((e:EventBoxProps)=>{
+          subscribedEvents = [...subscribedEvents, e.id]
+        })
+        setSubscribed(subscribedEvents)
+        setSubEvents(response.data)
+      }catch {
+        alert('Erro ao carregar os eventos inscritos')
+        Router.push('/')
+      }
+    }
+    
+    if(!showSubscriptions){
+      try {
+        const response = await api.get('events');
+        setEvents(response.data)
+      } catch(err){
+        alert('Erro ao carregar os eventos')
+      }
+    } else {
+      setEvents(subEvents) 
+    }
+  }
+  
+  useEffect(()=>{
+    fetchEvents()
+  },[showSubscriptions])
 
   return (
     <div className={styles.EventsContainer}>
@@ -79,18 +83,21 @@ export default function Table() {
               key={index}
               timeStart={time}
               timeEnd={time + 1}
-              visitations={visitations.filter(
+              visitations={events.filter(
                 (item) =>
-                  item.time.getHours() >= time &&
-                  item.time.getHours() < time + 1
+                  (new Date(item.time).getHours() >= time ) &&
+                  (new Date(item.time).getHours() < time + 1) &&
+                  (item.type=="visit")
               )}
-              workshops={workshops.filter(
+              workshops={events.filter(
                 (item) =>
-                  item.time.getHours() >= time &&
-                  item.time.getHours() < time + 1
+                  (new Date(item.time).getHours() >= time ) &&
+                  (new Date(item.time).getHours() < time + 1) &&
+                  (item.type=="workshop")
               )}
               selectedEvents={selectedEvents}
               setSelectedEvents={setSelectedEvents}
+              subscribedEvents={subscribed}
             />
           ))}
         </tbody>

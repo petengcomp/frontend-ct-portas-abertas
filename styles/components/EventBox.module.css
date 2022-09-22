@@ -1,7 +1,7 @@
 .EventBoxContainer{
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    min-width: 20rem;
+    min-width: 10rem;
     margin: 10px;
     transition: 0.2s ease-in-out;
     cursor: pointer;
@@ -9,6 +9,7 @@
     display:flex;
     justify-content: center;
     flex-direction: column;
+    max-height: 4rem;
 }   
 .EventBoxContainer:hover{
     transform: scale(1.05);
@@ -32,4 +33,9 @@
 #unselected {
     background-color: var(--darkBlue);
     color: white;
+}
+
+#subscribed {
+    background-color: var(--dark);
+    color:white;
 }

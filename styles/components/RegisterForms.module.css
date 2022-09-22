@@ -38,6 +38,10 @@
   flex: 1.5;
 }
 
+.leftInputs p{
+  color: tomato;
+}
+
 .container label {
   color: var(--lightBlue);
   display: block;

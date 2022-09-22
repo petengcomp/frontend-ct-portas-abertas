@@ -6,6 +6,29 @@
     width: 100%;
   }
   
-  .container h1, .container h2 {
-    font-weight: 100;
-  }
+.container h1, .container h2 {
+  font-weight: 100;
+}
+
+.user_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  padding-left: 10rem;
+  line-height: 5pt;
+}
+
+.user_info p{
+  font-size: 15pt;
+}
+
+.user_info span{
+  color: var(--darkBlue);
+}
+
+.user_info h4{
+  font-weight: 100;
+  cursor: pointer;
+  color:var(--orange);
+}

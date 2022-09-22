@@ -8,6 +8,8 @@ export interface EventBoxProps {
   capacity: number;
   filled: number;
   time: Date;
+  type: string;
+  subscribed: boolean;
 }
 
 export default function EventBox({
@@ -16,11 +18,12 @@ export default function EventBox({
   description,
   capacity,
   filled,
+  subscribed
 }: EventBoxProps) {
   return (
     <div
       className={styles.EventBoxContainer}
-      id={selected?styles.selected:styles.unselected}
+      id={selected?styles.selected:subscribed?styles.subscribed:styles.unselected}
     >
       <ul>
         <li>{title}</li>
