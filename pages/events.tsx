@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import NavBar from "../components/NavBar";
 import Image from 'next/image';
 import styles from '../styles/pages/Events.module.css'
-import HeaderBanner from '../assets/HEADER.png'
+import HeaderBanner from '../assets/HEADER.jpg'
 import Footer from "../components/Footer";
 import Title from "../components/Title";
 import Table from "../components/Table";
@@ -38,39 +38,37 @@ const Events: NextPage = () => {
 
     async function handleInscription(){
         const authType = localStorage.getItem('CTPORTASABERTASAUTHTYPE')
-        selectedEvents?.map(async(e)=>{
+        await Promise.all(selectedEvents.map(async(e)=>{
             try {
                 const response = await api.patch(`${authType}/add-event/${localStorage.getItem('CTPORTASABERTASAUTHID')}`, {
                     "event": { "id": e } 
                 }, {
                     headers: { Authorization: `Bearer ${localStorage.getItem('CTPORTASABERTASTOKEN')}` }
                 })
-
-                alert('Inscrição(ões) realizada(s)!')
-                Router.reload()
+                console.log(response.data)
             } catch {
                 let response:any = await api.put('token/refresh', {
                     "oldToken":localStorage.getItem('CTPORTASABERTASTOKEN')
                 })
+                console.log('resetando')
+                console.log(response.data)
 
                 localStorage.setItem('CTPORTASABERTASTOKEN', response.data.access_token);
 
-                try{
-                    response = await api.patch(`${authType}/add-event/${localStorage.getItem('CTPORTASABERTASAUTHID')}`, {
-                        "event": { "id": e } 
-                    }, {
-                        headers: { Authorization: `Bearer ${response.data.access_token}` }
-                    }).then(()=>{
-                        alert('Inscrição(ões) realizada(s)!')
-                        Router.reload()
-                    }).catch(function (error) {
-                        alert(error.response.data.message)
-                    })
-                } catch {
-                    alert('Erro ao salvar inscrições')
-                }
+                response = await api.patch(`${authType}/add-event/${localStorage.getItem('CTPORTASABERTASAUTHID')}`, {
+                    "event": { "id": e } 
+                }, {
+                    headers: { Authorization: `Bearer ${response.data.access_token}` }
+                }).catch(function (error) {
+                    alert(error.response.data.message)
+                    return
+                })
+                console.log(response.data)
             }
-        })    
+        }))
+        
+        alert('Inscrição(ões) realizada(s)!')
+        // Router.reload()
     }
 
     useEffect(()=>{

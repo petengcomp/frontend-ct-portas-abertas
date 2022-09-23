@@ -18,7 +18,7 @@
 .container form span {
   color: var(--darkBlue);
   font-weight: 100;
-  font-size: 20pt;
+  font-size: 15pt;
 }
 
 .container form > span {
@@ -27,15 +27,15 @@
 }
 
 .container form input {
-  padding: 2rem 0;
+  padding: 1.5rem 0;
   padding-left: 2rem;
-  height: 80px;
+  height: 2rem;
   margin: 0.2rem 0;
   background-color: var(--darkBlue);
   border-radius: 5px;
   width: 100%;
   border: none;
-  font-size: 17pt;
+  font-size: 12pt;
   color: white;
 }
 
@@ -68,4 +68,8 @@
 
 .container .bottomForm span:hover {
   color: var(--darkBlue);
+}
+
+.container h1 {
+  font-weight: 100;
 }

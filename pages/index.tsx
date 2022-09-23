@@ -57,7 +57,7 @@ const Home: NextPage = () => {
 
       <Image src={HeaderBanner} alt="Banner CT Portas Abertas"/>
 
-      <Title />
+      <h1>Login</h1>
 
       <form>
         <span>CREDENCIAIS</span>

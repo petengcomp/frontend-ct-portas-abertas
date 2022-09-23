@@ -31,10 +31,6 @@ export default function NavBar() {
           <li id={page=='events'?styles.selected:""}>PROGRAMAÇÃO</li>
         </Link>
 
-        <Link href="./speakers">
-          <li id={page=='speakers'?styles.selected:""}>PALESTRANTES</li>
-        </Link>
-
         <Link href="./signup">
           <li id={page=='signup'?styles.selected:""}>CADASTRO</li>
         </Link>

@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
 import styles from '../styles/pages/SignUp.module.css'
-import HeaderBanner from '../assets/HEADER.png'
+import HeaderBanner from '../assets/HEADER.jpg'
 import Image from 'next/image';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
