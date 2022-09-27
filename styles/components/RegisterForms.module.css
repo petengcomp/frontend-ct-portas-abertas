@@ -39,6 +39,10 @@
   flex: 1.5;
 }
 
+.leftInputs p{
+  color: tomato;
+}
+
 .container label {
   color: var(--lightBlue);
   display: block;
@@ -56,7 +60,6 @@
 .container input[type=number] {
   -moz-appearance: textfield;
 }
-
 
 /* animation for register forms */
 @keyframes go-top-bottom {

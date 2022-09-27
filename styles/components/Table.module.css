@@ -1,7 +1,5 @@
 .EventsContainer {
     display: flex;
-    margin-top: 10vh;
-    margin-bottom: 20vh;
     width: 100%;
 }
 .EventsTable {
@@ -40,7 +38,7 @@
     background-color: var(--lightBlue);
 }
 .EventsTable tr{
-    height: 80px;
+    height: 3rem;
 }
 .EventBoxesContainer{
     width: 100%;

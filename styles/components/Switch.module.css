@@ -1,0 +1,29 @@
+.switch_container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 10rem;
+  height: 3rem;
+  width: 100%;
+  cursor: pointer;
+  color: var(--darkBlue);
+}
+
+.switch_container h3, .switch_container h2 {
+  font-weight: 100;
+  font-size: 20pt;
+}
+
+.switch_container h2 span {
+  color: white
+}
+
+.switch_container span {
+  color: var(--orange);
+}
+
+.switch_toggle {
+  font-size: 30pt;
+  color: var(--orange);
+  margin-right: 1rem;
+}
