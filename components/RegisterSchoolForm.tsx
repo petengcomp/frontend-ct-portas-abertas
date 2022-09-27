@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { api } from '../services/api';
 import styles from '../styles/components/RegisterForms.module.css'
 import Button from './Button'
+import Swal from 'sweetalert2'
 
 export const RegisterSchoolForm = () => {
   const [ name, setName ] = useState<string>("");
@@ -15,18 +16,43 @@ export const RegisterSchoolForm = () => {
 
   async function handleSignUp(){
     if (password!=confirmPassword) {
-      alert('As senhas não estão iguais!')
+      Swal.fire('Calma lá!','As senhas não estão iguais!','warning')
+      return
+    }
+
+    if (cpfRes && !validateCPF(cpfRes)) {
+      Swal.fire('CPF Inválido','Digite novamente','error')
       return
     }
     
     await api.post('school', {
       name, nameRes, studentsAmount, cpfRes:String(cpfRes), password, emailRes
     }).then(()=>{
-      alert('Cadastrado com sucesso! Faça seu login para acessar os eventos')
+      Swal.fire('Cadastrado(a) com sucesso!','Faça seu login para acessar os eventos','success')
       Router.push('/')
     }).catch((err)=>err.response.data.message.map((m:string)=>alert(m)))
 
   }
+
+  function validateCPF(num:number){
+    let v1=0, v2=0;
+    let str=num.toString();
+    if (str.length>11) return 0;
+    let arr = []
+    for(var i=0;i<str.length-2;i++) arr[i] = str[i];
+    arr = arr.reverse();
+    for(var i=0;i<arr.length;i++){
+      v1 = v1 + parseInt(arr[i]) * (9-(i%10));
+      v2 = v2 + parseInt(arr[i]) * (9-((i+1)%10));
+    }
+    v1=(v1%11)%10;
+    v2=v2+v1*9;
+    v2=(v2%11)%10;
+
+    if (parseInt(str.slice(-2,-1))!=v1 || parseInt(str.slice(-1))!=v2) return 0;
+    return 1;
+  }
+
 
   return (
     <section className={styles.container}>

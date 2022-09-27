@@ -4,6 +4,7 @@ import { api } from "../services/api";
 import styles from "../styles/components/Table.module.css";
 import { EventBoxProps } from "./EventBox";
 import { ScheduleColumn } from "./ScheduleColumn";
+import Swal from 'sweetalert2'
 
 interface TableProps {
   selectedEvents: Array<number>
@@ -47,7 +48,7 @@ export default function Table({selectedEvents, setSelectedEvents, showSubscripti
         setSubscribed(subscribedEvents)
         setSubEvents(response.data)
       }catch {
-        alert('Erro ao carregar os eventos inscritos')
+        Swal.fire('Erro','Erro ao carregar os eventos inscritos, redirecionando para página inicial...','error')
         Router.push('/')
       }
     }
@@ -57,7 +58,7 @@ export default function Table({selectedEvents, setSelectedEvents, showSubscripti
         const response = await api.get('events');
         setEvents(response.data)
       } catch(err){
-        alert('Erro ao carregar os eventos')
+        Swal.fire('Erro','Erro ao carregar os eventos','error')
       }
     } else {
       setEvents(subEvents) 
@@ -98,6 +99,7 @@ export default function Table({selectedEvents, setSelectedEvents, showSubscripti
               selectedEvents={selectedEvents}
               setSelectedEvents={setSelectedEvents}
               subscribedEvents={subscribed}
+              setSubscribedEvents={setSubscribed}
             />
           ))}
         </tbody>

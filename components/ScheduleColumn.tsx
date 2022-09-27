@@ -3,6 +3,7 @@ import EventBox, { EventBoxProps } from "./EventBox";
 import styles from '../styles/components/Table.module.css'
 import { api } from "../services/api";
 import Router from "next/router";
+import Swal from "sweetalert2";
 
 interface ScheduleColumnProps {
   timeStart:number
@@ -12,6 +13,7 @@ interface ScheduleColumnProps {
   selectedEvents: Array<number>
   setSelectedEvents: Function
   subscribedEvents: Array<number>
+  setSubscribedEvents: Function
 }
 
 export function ScheduleColumn({
@@ -21,7 +23,8 @@ export function ScheduleColumn({
   workshops,
   selectedEvents,
   setSelectedEvents,
-  subscribedEvents
+  subscribedEvents,
+  setSubscribedEvents
 }:ScheduleColumnProps){
   
   function handleSelection(id: number) {
@@ -48,15 +51,23 @@ export function ScheduleColumn({
 
   async function unsubscribe(id:number){
     const authType = localStorage.getItem('CTPORTASABERTASAUTHTYPE')
-    if (confirm(`Desinscrever do evento ${id} ?`)) {
+    const response = await api.get(`events/${id}`)
+    
+    
+    const result = await Swal.fire({
+      title:`Desinscrever do evento ${response.data.title} ?`,
+      showCancelButton: true,
+      confirmButtonText: 'Desinscrever',
+    })
+
+    if (result.isConfirmed){
       try{
         await api.patch(`${authType}/remove-event/${localStorage.getItem('CTPORTASABERTASAUTHID')}`, {
           "event": { "id": id } 
         }, {
           headers: { Authorization: `Bearer ${localStorage.getItem('CTPORTASABERTASTOKEN')}` }
         })
-        alert('Evento removido!')
-        Router.reload()
+        setSubscribedEvents(subscribedEvents.filter(e=>e!=id))
       } catch {
         try{
           const response = await api.put('token/refresh', {
@@ -70,13 +81,13 @@ export function ScheduleColumn({
             headers: { Authorization: `Bearer ${localStorage.getItem('CTPORTASABERTASTOKEN')}` }
           })
   
-          alert('Evento removido!')
-          Router.reload()
+          setSubscribedEvents(subscribedEvents.filter(e=>e!=id))
         } catch {
-          alert('Impossível se desinscrever do evento')
+          Swal.fire('Error','Erro ao se desinscrever do evento','error')
         }
       }
     }
+   
   }
 
   return(
