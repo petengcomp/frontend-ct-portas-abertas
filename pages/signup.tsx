@@ -1,10 +1,9 @@
 import { NextPage } from 'next'
 import styles from '../styles/pages/SignUp.module.css'
-import HeaderBanner from '../assets/HEADER.jpg'
+import HeaderBanner from '../assets/HEADER.png'
 import Image from 'next/image';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
-import Title from '../components/Title';
 import { FiUsers, FiUser } from 'react-icons/fi'
 import { useEffect, useState } from 'react';
 import { RegisterStudentForm } from '../components/RegisterStudentForm';
@@ -22,9 +21,7 @@ const SignUp: NextPage = () => {
     <main className={styles.container}>
       <NavBar />
 
-      <Image src={HeaderBanner} alt="Banner CT Portas Abertas" />
-
-      <Title />
+      <div className={styles.banner_container}><Image src={HeaderBanner} alt="Banner CT Portas Abertas" layout="responsive"/></div>
 
       <h1>Formulário de Cadastro</h1>
 

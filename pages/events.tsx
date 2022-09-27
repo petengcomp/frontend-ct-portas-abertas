@@ -2,15 +2,15 @@ import { NextPage } from "next";
 import NavBar from "../components/NavBar";
 import Image from 'next/image';
 import styles from '../styles/pages/Events.module.css'
-import HeaderBanner from '../assets/HEADER.jpg'
+import HeaderBanner from '../assets/HEADER.png'
 import Footer from "../components/Footer";
-import Title from "../components/Title";
 import Table from "../components/Table";
 import Button from "../components/Button";
 import { useEffect, useState } from "react";
 import { api } from "../services/api";
 import Router from "next/router";
 import { Switch } from "../components/Switch";
+import Swal from 'sweetalert2'
 
 const Events: NextPage = () => {
     
@@ -19,12 +19,29 @@ const Events: NextPage = () => {
     const [authName, setAuthName] = useState<string | null>("");
     const [amountStudents, setAmountStudents] = useState<string | null>("0");
 
-    function handleConfirmation(){
+    async function handleConfirmation(){
         if (selectedEvents.length<=0) {
-            alert('Escolha eventos para se inscrever!')
+            Swal.fire('Pera lá','Escolha eventos para se inscrever!','warning')
             return
         }
-        if (confirm(`Confirmar inscrição nos eventos: ${selectedEvents.map((e)=>e)}`)) handleInscription()
+
+        let events:Array<string>=[]
+        await Promise.all(selectedEvents.map(async(e)=>{
+            await api.get(`events/${e}`).then((response)=>{
+              if (response) events = [...events, response.data.title]
+            }).catch((e)=>{
+                Swal.fire('Houve um problema', e.response.data.message, 'error')
+                Router.push('/')
+            })
+        }))
+
+        const result = await Swal.fire({
+            text:`Confirmar inscrição nos eventos: ${events.map((e)=>e)}`,
+            showCancelButton: true,
+            confirmButtonText: 'Confirmar',
+        })
+        
+        if (result.isConfirmed) handleInscription()
     }
 
     function logout(){
@@ -38,43 +55,41 @@ const Events: NextPage = () => {
 
     async function handleInscription(){
         const authType = localStorage.getItem('CTPORTASABERTASAUTHTYPE')
-        await Promise.all(selectedEvents.map(async(e)=>{
+        let idx=0
+        for (idx=0;idx<selectedEvents.length;idx++) {
+            const e = selectedEvents[idx]
             try {
+
                 const response = await api.patch(`${authType}/add-event/${localStorage.getItem('CTPORTASABERTASAUTHID')}`, {
                     "event": { "id": e } 
                 }, {
                     headers: { Authorization: `Bearer ${localStorage.getItem('CTPORTASABERTASTOKEN')}` }
                 })
-                console.log(response.data)
             } catch {
                 let response:any = await api.put('token/refresh', {
                     "oldToken":localStorage.getItem('CTPORTASABERTASTOKEN')
                 })
-                console.log('resetando')
-                console.log(response.data)
-
                 localStorage.setItem('CTPORTASABERTASTOKEN', response.data.access_token);
-
-                response = await api.patch(`${authType}/add-event/${localStorage.getItem('CTPORTASABERTASAUTHID')}`, {
-                    "event": { "id": e } 
-                }, {
-                    headers: { Authorization: `Bearer ${response.data.access_token}` }
-                }).catch(function (error) {
-                    alert(error.response.data.message)
+                try{
+                    response = await api.patch(`${authType}/add-event/${localStorage.getItem('CTPORTASABERTASAUTHID')}`, {
+                        "event": { "id": e } 
+                    }, {
+                        headers: { Authorization: `Bearer ${response.data.access_token}` }
+                    })
+                } catch(error:any) {
+                    Swal.fire('Houve um erro na inscrição', error.response.data.message, 'error')
                     return
-                })
-                console.log(response.data)
+                }
             }
-        }))
-        
-        alert('Inscrição(ões) realizada(s)!')
-        // Router.reload()
+        }
+
+        Router.reload()
     }
 
     useEffect(()=>{
         if (typeof window !== 'undefined'){
             if (localStorage.getItem('CTPORTASABERTASAUTHNAME')=='') {
-                alert('Nenhum login encontrado!')
+                Swal.fire('Erro de login','Nenhum login encontrado!','error')
                 Router.push('/')
             }
             setAuthName(localStorage.getItem('CTPORTASABERTASAUTHNAME')?localStorage.getItem('CTPORTASABERTASAUTHNAME'):null)
@@ -88,9 +103,7 @@ const Events: NextPage = () => {
         <main className={styles.container}>
             <NavBar />
 
-            <Image src={HeaderBanner} alt="Banner CT Portas Abertas" />
-
-            <Title />
+            <div className={styles.banner_container}><Image src={HeaderBanner} alt="Banner CT Portas Abertas" layout="responsive"/></div>
 
             <h1>INSCRIÇÃO NOS EVENTOS</h1>
 

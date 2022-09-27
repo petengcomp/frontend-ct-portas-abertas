@@ -73,3 +73,7 @@
 .container h1 {
   font-weight: 100;
 }
+
+.banner_container {
+  width: 100%;
+}

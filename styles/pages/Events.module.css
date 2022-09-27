@@ -32,3 +32,7 @@
   cursor: pointer;
   color:var(--orange);
 }
+
+.banner_container {
+  width: 100%;
+}
