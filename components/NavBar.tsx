@@ -3,6 +3,7 @@ import UfesLogo from '../assets/UfesLogo.svg'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import Head from 'next/head'
 
 
 
@@ -15,6 +16,11 @@ export default function NavBar() {
 
   return (
     <div className={styles.navbarContainer}>
+      <Head>
+        <title>CT Portas Abertas - 2022</title>
+        <meta name="description" content="Author: PET EngComp, Espaço dedicado à inscrição no evento CT Portas Abertas da UFES"/>
+        <meta content="CT Portas Abertas - UFES - ES" property="og:title"></meta>
+      </Head>
       <div className={styles.logoContainer}>
         <Image 
           src={UfesLogo}
