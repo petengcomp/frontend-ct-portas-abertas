@@ -55,7 +55,7 @@ export const RegisterSchoolForm = () => {
 
 
   return (
-    <section className={styles.container}>
+    <section className={styles.container} style={{transform:'translateY(0)'}}>
       <h1>Cadastro escola</h1>
 
       <form>
