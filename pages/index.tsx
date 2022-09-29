@@ -55,7 +55,11 @@ const Home: NextPage = () => {
     <main className={styles.container}>
       <NavBar />
 
-      <div className={styles.banner_container}><Image src={HeaderBanner} alt="Banner CT Portas Abertas" layout="responsive"/></div>
+      <div className={styles.banner_container}>
+        <div className={styles.banner_inside_container}>
+          <Image src={HeaderBanner} alt="Banner CT Portas Abertas" layout="responsive"/>
+        </div>
+      </div>
 
       <h1>Login</h1>
 

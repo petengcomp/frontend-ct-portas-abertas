@@ -1,7 +1,5 @@
 import { NextPage } from 'next'
 import styles from '../styles/pages/SignUp.module.css'
-import HeaderBanner from '../assets/HEADER.png'
-import Image from 'next/image';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import { FiUsers, FiUser } from 'react-icons/fi'
@@ -20,8 +18,6 @@ const SignUp: NextPage = () => {
   return (
     <main className={styles.container}>
       <NavBar />
-
-      <div className={styles.banner_container}><Image src={HeaderBanner} alt="Banner CT Portas Abertas" layout="responsive"/></div>
 
       <h1>Formulário de Cadastro</h1>
 
@@ -50,10 +46,12 @@ const SignUp: NextPage = () => {
           <p>Cadastro Aluno</p>
         </div>
       </div>
-      {
-        signType == 0 ? <RegisterSchoolForm /> : signType == 1 ? <RegisterStudentForm /> : ""
-      }
 
+      <div className={styles.formContainer}>
+        {
+          signType == 0 ? <RegisterSchoolForm /> : signType == 1 ? <RegisterStudentForm /> : ""
+        }
+      </div>
       <Footer />
     </main>
   )
