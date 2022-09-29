@@ -60,3 +60,8 @@
 .banner_container {
   width: 100%;
 }
+
+.formContainer {
+  width: 100%;
+  overflow: hidden;
+}
