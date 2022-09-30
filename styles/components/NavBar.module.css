@@ -1,5 +1,5 @@
 .navbarContainer {
-  height: 5rem;
+  height: 3rem;
   width: 100%;
   background-color: var(--darkBlue);
   display: flex;
@@ -22,7 +22,7 @@
   justify-content: space-between;
   width: 90%;
   color: white;
-  font-size: 15pt;
+  font-size: 11pt;
   cursor: pointer;
 }
 
@@ -39,5 +39,4 @@
 
 #selected {
   color: var(--orange);
-  font-size: 17pt;
 }
