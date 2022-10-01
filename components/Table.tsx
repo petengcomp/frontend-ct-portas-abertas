@@ -20,7 +20,7 @@ export default function Table({selectedEvents, setSelectedEvents, showSubscripti
   
   function loadSchedules() {
     let times = []; 
-    let start= new Date("2022-11-22T10:00:00.000Z"); //GMT (hours is +3)
+    let start= new Date("2022-11-22T09:00:00.000Z"); //GMT (hours is +3)
     for(var i = 0;i<23; i++) {
       let end = new Date(start.getTime())
       end.setMinutes(end.getMinutes() + 30)
@@ -100,14 +100,16 @@ export default function Table({selectedEvents, setSelectedEvents, showSubscripti
               startEnd={startEnd}
               visitations={events.filter(
                 (item) =>
-                  (new Date(item.time)>=startEnd[0]) &&
                   (new Date(item.time)<startEnd[1]) &&
+                  // TODO: add end time to backend to remove 1h30min fixed time
+                  (new Date((new Date(item.time)).getTime() + 90*60*1000)>startEnd[0]) &&
                   (item.type=="visit")
               )}
               workshops={events.filter(
                 (item) =>
-                (new Date(item.time)>=startEnd[0]) &&
                 (new Date(item.time)<startEnd[1]) &&
+                // TODO: add end time to backend to remove 1h30min fixed time
+                (new Date((new Date(item.time)).getTime() + 90*60*1000)>startEnd[0]) &&
                 (item.type=="workshop")
               )}
               selectedEvents={selectedEvents}
