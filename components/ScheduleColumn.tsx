@@ -6,8 +6,7 @@ import Router from "next/router";
 import Swal from "sweetalert2";
 
 interface ScheduleColumnProps {
-  timeStart:number
-  timeEnd:number
+  startEnd: Array<Date>
   visitations: Array<EventBoxProps> | null
   workshops: Array<EventBoxProps> | null
   selectedEvents: Array<number>
@@ -17,8 +16,7 @@ interface ScheduleColumnProps {
 }
 
 export function ScheduleColumn({
-  timeStart,
-  timeEnd,
+  startEnd,
   visitations,
   workshops,
   selectedEvents,
@@ -38,15 +36,14 @@ export function ScheduleColumn({
     else setSelectedEvents([...selectedEvents, id]);
   }
 
-  function handleTimeString(){
+  function handleTimeString(){    
     let string = ""
-    if (timeStart<=9) string += `0${timeStart}`
-    else string += timeStart
-    string+=':00-'
-    if (timeEnd<=9) string += `0${timeEnd}`
-    else string += timeEnd
-    string+=':00'
-    return string
+    
+    return (
+      `${startEnd[0].getHours().toLocaleString('en-US', {minimumIntegerDigits: 2})}:${startEnd[0].getMinutes().toLocaleString('en-US', {minimumIntegerDigits: 2})}
+       - 
+      ${startEnd[1].getHours().toLocaleString('en-US', {minimumIntegerDigits: 2})}:${startEnd[1].getMinutes().toLocaleString('en-US', {minimumIntegerDigits: 2})}`
+    )
   }
 
   async function unsubscribe(id:number){

@@ -16,8 +16,22 @@ export default function Table({selectedEvents, setSelectedEvents, showSubscripti
   const [events, setEvents] = useState<Array<EventBoxProps>>([]);
   const [subEvents, setSubEvents] = useState<Array<EventBoxProps>>([]);
   const [subscribed, setSubscribed] = useState<Array<number>>([]);
+  const [schedules, setSchedules] = useState<Array<Array<Date>>>([]);
   
-  const times = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+  function loadSchedules() {
+    let times = []; 
+    let start= new Date("2022-11-22T10:00:00.000Z"); //GMT (hours is +3)
+    for(var i = 0;i<23; i++) {
+      let end = new Date(start.getTime())
+      end.setMinutes(end.getMinutes() + 30)
+      times[i] = [
+        new Date(start.getTime()),
+        new Date(end.getTime())
+      ]
+      start.setMinutes(start.getMinutes() + 30)
+    }
+    setSchedules(times);
+  }
 
   async function fetchEvents(){
     let subscribedEvents:Array<number> = [];
@@ -52,7 +66,7 @@ export default function Table({selectedEvents, setSelectedEvents, showSubscripti
         Router.push('/')
       }
     }
-    
+
     if(!showSubscriptions){
       try {
         const response = await api.get('events');
@@ -67,6 +81,7 @@ export default function Table({selectedEvents, setSelectedEvents, showSubscripti
   
   useEffect(()=>{
     fetchEvents()
+    loadSchedules()
   },[showSubscriptions])
 
   return (
@@ -79,22 +94,21 @@ export default function Table({selectedEvents, setSelectedEvents, showSubscripti
             <th>Oficinas</th>
           </tr>
 
-          {times.map((time, index) => (
+          {schedules.map((startEnd, index) => (
             <ScheduleColumn
               key={index}
-              timeStart={time}
-              timeEnd={time + 1}
+              startEnd={startEnd}
               visitations={events.filter(
                 (item) =>
-                  (new Date(item.time).getHours() >= time ) &&
-                  (new Date(item.time).getHours() < time + 1) &&
+                  (new Date(item.time)>=startEnd[0]) &&
+                  (new Date(item.time)<startEnd[1]) &&
                   (item.type=="visit")
               )}
               workshops={events.filter(
                 (item) =>
-                  (new Date(item.time).getHours() >= time ) &&
-                  (new Date(item.time).getHours() < time + 1) &&
-                  (item.type=="workshop")
+                (new Date(item.time)>=startEnd[0]) &&
+                (new Date(item.time)<startEnd[1]) &&
+                (item.type=="workshop")
               )}
               selectedEvents={selectedEvents}
               setSelectedEvents={setSelectedEvents}
