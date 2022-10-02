@@ -20,15 +20,15 @@ export default function Table({selectedEvents, setSelectedEvents, showSubscripti
   
   function loadSchedules() {
     let times = []; 
-    let start= new Date("2022-11-22T09:00:00.000Z"); //GMT (hours is +3)
+    let start= new Date("2022-11-22T08:00:00.000Z"); //GMT (Brasilia +3 ex: 6h BR == 9h GMT)
     for(var i = 0;i<23; i++) {
       let end = new Date(start.getTime())
-      end.setMinutes(end.getMinutes() + 30)
+      end.setMinutes(end.getMinutes() + 90)
       times[i] = [
         new Date(start.getTime()),
         new Date(end.getTime())
       ]
-      start.setMinutes(start.getMinutes() + 30)
+      start.setMinutes(start.getMinutes() + 90)
     }
     setSchedules(times);
   }
