@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding-left: 10rem;
+  padding-left: 10vw;
   height: 3rem;
   width: 100%;
   cursor: pointer;
@@ -26,4 +26,29 @@
   font-size: 30pt;
   color: var(--orange);
   margin-right: 1rem;
+}
+
+@media (max-width: 430px) {
+  .switch_container h3, .switch_container h2{
+    font-size: 18pt;
+  }
+  .switch_toggle{
+    font-size: 27pt;
+  }
+}
+@media (max-width: 400px) {
+  .switch_container h3, .switch_container h2{
+    font-size: 16pt;
+  }
+  .switch_toggle{
+    font-size: 25pt;
+  }
+}
+@media (max-width: 340px) {
+  .switch_container h3, .switch_container h2{
+    font-size: 14pt;
+  }
+  .switch_toggle{
+    font-size: 24pt;
+  }
 }

@@ -46,3 +46,32 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+@media (max-width: 800px) {
+    .EventsTable td:first-child {
+        width: 10rem
+    }
+}
+@media (max-width: 600px) {
+    .EventsTable td:first-child {
+        width: 8rem
+    }
+}
+@media (max-width: 500px) {
+    .EventsTable th{
+        font-size: 24px;
+    }
+    .EventsTable td:first-child {
+        width: 6rem;
+        font-size: 14pt;
+    }
+}
+@media (max-width: 400px) {
+    .EventsTable th{
+        font-size: 18px;
+    }
+    .EventsTable td:first-child {
+        width: 4rem;
+        font-size: 16pt;
+        text-align: center;
+    }
+}
