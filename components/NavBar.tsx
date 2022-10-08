@@ -5,8 +5,6 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import Head from 'next/head'
 
-
-
 export default function NavBar() {
   const [page,setPage] = useState<string | null>("");
 
@@ -33,8 +31,12 @@ export default function NavBar() {
           <li id={page=='index'?styles.selected:""}>PÁGINA INICIAL</li>
         </Link>
 
+        <Link href="./booths">
+          <li id={page=='booths'?styles.selected:""}>ESTANDES</li>
+        </Link>
+
         <Link href="./events">
-          <li id={page=='events'?styles.selected:""}>PROGRAMAÇÃO</li>
+          <li id={page=='events'?styles.selected:""}>EVENTOS</li>
         </Link>
 
         <Link href="./signup">
