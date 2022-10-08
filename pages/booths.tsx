@@ -55,6 +55,8 @@ const Booths: NextPage = () =>{
         subscribed: false
       }
     ])
+
+    localStorage.setItem('CTPORTASABERTASPAGE', 'booths')
   }, [])
 
   return(
