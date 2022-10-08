@@ -5,21 +5,30 @@ import { api } from '../services/api';
 import styles from '../styles/components/RegisterForms.module.css'
 import Button from './Button'
 
+import { Spinner } from "react-activity";
+import "react-activity/dist/library.css";
+
 export const RegisterStudentForm = () => {
   const [name, setName] = useState<string>("");
   const [cpf, setCpf] = useState<number>();
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [email, setEmail] = useState<string>("");
+  const [ loading, setLoading ] = useState<boolean>(false);
 
   async function handleSignUp(){
+    if (loading) return
+    
+    setLoading(true);
     if (password!=confirmPassword) {
       Swal.fire('Calma lá!','As senhas não estão iguais!','warning')
+      setLoading(false);
       return
     }
 
     if (cpf && !validateCPF(cpf)) {
       Swal.fire('CPF Inválido','Digite novamente','error')
+      setLoading(false);
       return
     }
     
@@ -28,7 +37,10 @@ export const RegisterStudentForm = () => {
     }).then(()=>{
       Swal.fire('Cadastrado(a) com sucesso!','Faça seu login para acessar os eventos','success')
       Router.push('/')
-    }).catch((err)=>err.response.data.message.map((m:string)=>alert(m)))
+    }).catch((err)=>{
+      setLoading(false);
+      err.response.data.message.map((m:string)=>alert(m))
+    })
   }
 
   function validateCPF(num:number){
@@ -78,6 +90,7 @@ export const RegisterStudentForm = () => {
       </form>
 
       <div onClick={handleSignUp}><Button text='SALVAR CADASTRO' /></div>
+      <div className={styles.loading_container} style={loading?{}:{visibility:'hidden'}}><Spinner /></div>
       <br />
     </section>
   )

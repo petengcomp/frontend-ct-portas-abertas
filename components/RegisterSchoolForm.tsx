@@ -5,6 +5,9 @@ import styles from '../styles/components/RegisterForms.module.css'
 import Button from './Button'
 import Swal from 'sweetalert2'
 
+import { Spinner } from "react-activity";
+import "react-activity/dist/library.css";
+
 export const RegisterSchoolForm = () => {
   const [ name, setName ] = useState<string>("");
   const [ nameRes, setNameRes ] = useState<string>("");
@@ -13,15 +16,21 @@ export const RegisterSchoolForm = () => {
   const [ password, setPassword ] = useState<string>("");
   const [ confirmPassword, setConfirmPassword ] = useState<string>("");
   const [ emailRes, setEmailRes ] = useState<string>("");
+  const [ loading, setLoading ] = useState<boolean>(false);
 
   async function handleSignUp(){
+    if (loading) return
+    
+    setLoading(true);
     if (password!=confirmPassword) {
       Swal.fire('Calma lá!','As senhas não estão iguais!','warning')
+      setLoading(false);
       return
     }
 
     if (cpfRes && !validateCPF(cpfRes)) {
       Swal.fire('CPF Inválido','Digite novamente','error')
+      setLoading(false);
       return
     }
     
@@ -29,8 +38,12 @@ export const RegisterSchoolForm = () => {
       name, nameRes, studentsAmount, cpfRes:String(cpfRes), password, emailRes
     }).then(()=>{
       Swal.fire('Cadastrado(a) com sucesso!','Faça seu login para acessar os eventos','success')
+      setLoading(false);
       Router.push('/')
-    }).catch((err)=>err.response.data.message.map((m:string)=>alert(m)))
+    }).catch((err)=>{
+      err.response.data.message.map((m:string)=>alert(m))
+      setLoading(false);
+    })
 
   }
 
@@ -87,6 +100,7 @@ export const RegisterSchoolForm = () => {
       </form>
 
       <div onClick={handleSignUp}><Button text='SALVAR CADASTRO' /></div>
+      <div className={styles.loading_container} style={loading?{}:{visibility:'hidden'}}><Spinner /></div>
       <br />
     </section >
 

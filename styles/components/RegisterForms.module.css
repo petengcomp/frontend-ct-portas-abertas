@@ -66,3 +66,14 @@
   from { transform: translateY(-40rem)}
   to { transform: translateY(0)}
 }
+
+.loading_container {
+  margin-top: 2rem;
+}
+
+#disabled {
+  position: relative;
+  z-index: 1;
+  cursor: not-allowed;
+  background: red;
+}
