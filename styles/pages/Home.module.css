@@ -88,3 +88,7 @@
   max-width: 1000px;
   width: 70%;
 }
+
+.loading_container {
+  margin-top: 2rem;
+}

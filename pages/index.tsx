@@ -11,13 +11,19 @@ import { useEffect, useState } from 'react';
 import { api } from '../services/api';
 import Router from 'next/router';
 import Swal from 'sweetalert2'
+import { Spinner } from "react-activity";
+import "react-activity/dist/library.css";
 
 const Home: NextPage = () => {
 
   const [ email, setEmail ] = useState<string>("");
   const [ password, setPassword ] = useState<string>("");
+  const [ loading, setLoading ] = useState<boolean>(false);
 
   async function handleSubmit(){
+    if (loading) return
+
+    setLoading(true)
     let response:any
 
     try{
@@ -25,14 +31,17 @@ const Home: NextPage = () => {
         "username":email,
         "password":password
       })
+      setLoading(false)
     } catch(err) {
       try {
         response = await api.post('schools/auth/login', {
           "username":email,
           "password":password
         })
+        setLoading(false)
       } catch {
         Swal.fire('Login/Senha inválidos','','error')
+        setLoading(false)
       }
     }
 
@@ -78,7 +87,7 @@ const Home: NextPage = () => {
       </form>
 
       <div onClick={handleSubmit}><Button text="FAZER LOGIN" /></div>
-
+      <div className={styles.loading_container} style={loading?{}:{visibility:'hidden'}}><Spinner /></div>
       <Footer />
     </main>
   )

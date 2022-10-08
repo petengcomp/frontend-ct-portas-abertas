@@ -70,10 +70,3 @@
 .loading_container {
   margin-top: 2rem;
 }
-
-#disabled {
-  position: relative;
-  z-index: 1;
-  cursor: not-allowed;
-  background: red;
-}
