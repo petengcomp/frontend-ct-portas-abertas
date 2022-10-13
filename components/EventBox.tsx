@@ -5,6 +5,7 @@ export interface EventBoxProps {
   selected: boolean;
   title: string;
   description?: string;
+  local?:string;
   capacity: number;
   filled: number;
   time: Date;
