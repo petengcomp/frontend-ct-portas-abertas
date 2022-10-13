@@ -19,7 +19,24 @@ const Home: NextPage = () => {
   const [ email, setEmail ] = useState<string>("");
   const [ password, setPassword ] = useState<string>("");
   const [ loading, setLoading ] = useState<boolean>(false);
+  const [ passwordForgotten, setPasswordForgotten ] = useState<boolean>(false);
 
+  async function handleForgotten(){
+    if (loading) return
+    setLoading(true)
+
+    try{
+      await api.post('student/recover-password', {email})
+      Swal.fire('Sucesso!','Sua senha foi enviada para você no seu email. (Talvez leve alguns minutos até você recebê-la)','success')
+      setPasswordForgotten(false)
+    } catch (err:any){
+      Swal.fire('Erro no email informado',`${err.response.data.message}`,'error')
+    }
+
+    setLoading(false)
+  }
+  
+  
   async function handleSubmit(){
     if (loading) return
 
@@ -72,21 +89,34 @@ const Home: NextPage = () => {
 
       <h1>Login</h1>
 
-      <form>
-        <span>CREDENCIAIS</span>
-        <input type={"email"} placeholder={"EMAIL"} onChange={(e)=>setEmail(e.target.value)}/>
-        <input type={"password"} placeholder={"SENHA"} onChange={(e)=>setPassword(e.target.value)}/>
+      {
+        passwordForgotten?(
+          <form>
+            <span>INSIRA O EMAIL PARA RECUPERAÇÃO</span>
+            <input type={"email"} onChange={(e)=>{setEmail(e.target.value)}}/>
+          </form>
+        ):(
+          <form>
+            <span>CREDENCIAIS</span>
+            <input type={"email"} placeholder={"EMAIL"} onChange={(e)=>setEmail(e.target.value)}/>
+            <input type={"password"} placeholder={"SENHA"} onChange={(e)=>setPassword(e.target.value)}/>
 
-        <div className={styles.bottomForm}>
-          {/* <span>ESQUECI A SENHA</span> */}
-          <br />
-          <Link href="./signup">
-            <span><FiLogIn size={30} style={{marginRight: '5px'}}/> CADASTRAR</span>
-          </Link>
-        </div>
-      </form>
+            <div className={styles.bottomForm}>
+              <span onClick={()=>setPasswordForgotten(true)}>ESQUECI A SENHA</span>
+              <br />
+              <Link href="./signup">
+                <span><FiLogIn size={30} style={{marginRight: '5px'}}/> CADASTRAR</span>
+              </Link>
+            </div>
+          </form>
+        )
+      }
+      
+      
 
-      <div onClick={handleSubmit}><Button text="FAZER LOGIN" /></div>
+      <div onClick={passwordForgotten?()=>handleForgotten():()=>handleSubmit()}>
+        <Button text={passwordForgotten?"RECUPERAR SENHA":"FAZER LOGIN"} />
+      </div>
       <div className={styles.loading_container} style={loading?{}:{visibility:'hidden'}}><Spinner /></div>
       <Footer />
     </main>

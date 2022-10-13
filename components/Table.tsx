@@ -61,18 +61,20 @@ export default function Table({selectedEvents, setSelectedEvents, showSubscripti
         })
         setSubscribed(subscribedEvents)
         setSubEvents(response.data)
-      }catch {
-        Swal.fire('Erro','Erro ao carregar os eventos inscritos, redirecionando para página inicial...','error')
+      } catch (err:any) {
+        Swal.fire('Erro','Erro ao carregar os eventos inscritos, redirecionando para página inicial... ' + err.response.data.message,'error')
         Router.push('/')
       }
     }
 
     if(!showSubscriptions){
-      try {
-        const response = await api.get('events');
+      try {      
+        const response = await api.post('events',{
+          key:process.env.NEXT_PUBLIC_API_KEY
+        });
         setEvents(response.data)
-      } catch(err){
-        Swal.fire('Erro','Erro ao carregar os eventos','error')
+      } catch(err:any){
+        Swal.fire('Erro','Erro ao carregar os eventos ' + err.response.data.message,'error')
       }
     } else {
       setEvents(subEvents) 
