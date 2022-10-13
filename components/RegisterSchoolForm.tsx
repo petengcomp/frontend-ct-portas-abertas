@@ -35,7 +35,7 @@ export const RegisterSchoolForm = () => {
     }
     
     await api.post('school', {
-      name, nameRes, studentsAmount, cpfRes:String(cpfRes), password, emailRes
+      name, nameRes, studentsAmount, cpfRes:String(cpfRes), password, emailRes, key:process.env.NEXT_PUBLIC_API_KEY
     }).then(()=>{
       Swal.fire('Cadastrado(a) com sucesso!','Faça seu login para acessar os eventos','success')
       setLoading(false);

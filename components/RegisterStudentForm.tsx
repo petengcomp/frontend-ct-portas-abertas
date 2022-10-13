@@ -33,7 +33,7 @@ export const RegisterStudentForm = () => {
     }
     
     await api.post('student', {
-      name, cpf:String(cpf), password, email
+      name, cpf:String(cpf), password, email, key:process.env.NEXT_PUBLIC_API_KEY
     }).then(()=>{
       Swal.fire('Cadastrado(a) com sucesso!','Faça seu login para acessar os eventos','success')
       Router.push('/')

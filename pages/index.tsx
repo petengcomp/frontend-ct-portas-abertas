@@ -19,19 +19,56 @@ const Home: NextPage = () => {
   const [ email, setEmail ] = useState<string>("");
   const [ password, setPassword ] = useState<string>("");
   const [ loading, setLoading ] = useState<boolean>(false);
-  const [ passwordForgotten, setPasswordForgotten ] = useState<boolean>(false);
+  const [ passwordForgotten, setPasswordForgotten ] = useState<number>(0);
+  const [ newPassword, setNewPassword ] = useState<string>("");
 
   async function handleForgotten(){
     if (loading) return
+    setLoading(true)    
+    try{
+      await api.post("student/recover-password", {emailRes:email})
+    } catch (err:any){
+      try {
+        await api.post("school/recover-password", {emailRes:email}) 
+      }catch(err:any){
+        Swal.fire('Erro no email informado',`${err.response.data.message}`,'error')
+        setLoading(false)
+        return
+      }
+    }
+
+    Swal.fire('Sucesso!','Sua senha foi enviada para você no seu email. (Talvez leve alguns minutos até você recebê-la)','success')
+    setPassword("")
+    setNewPassword("")
+    setPasswordForgotten(2)
+
+    setLoading(false)
+  }
+
+  async function handleChangePassword() {
+    if (loading) return
     setLoading(true)
 
+    const login = await handleSubmit()
+    if (!login) return
+
+    const type = localStorage.getItem('CTPORTASABERTASAUTHTYPE')
+    const id = localStorage.getItem('CTPORTASABERTASAUTHID')
+    const bearer = localStorage.getItem('CTPORTASABERTASTOKEN')
+    
     try{
-      await api.post('student/recover-password', {email})
-      Swal.fire('Sucesso!','Sua senha foi enviada para você no seu email. (Talvez leve alguns minutos até você recebê-la)','success')
-      setPasswordForgotten(false)
+      if (!type || !id) throw Error("Dados de login faltantes")
+
+      await api.patch(`${type}/update-password/${id}`, {password:newPassword}, {headers: { Authorization: `Bearer ${bearer}` }})
+      Swal.fire('Sucesso!','Sua senha foi resetada','success')
+      setEmail("")
+      setPassword("")
+      setNewPassword("")
+      setPasswordForgotten(0)
     } catch (err:any){
-      Swal.fire('Erro no email informado',`${err.response.data.message}`,'error')
+      Swal.fire('Erro na nova senha informada ',`${err.response.data.message}`,'error')
     }
+
 
     setLoading(false)
   }
@@ -51,7 +88,7 @@ const Home: NextPage = () => {
       setLoading(false)
     } catch(err) {
       try {
-        response = await api.post('schools/auth/login', {
+        response = await api.post('school/auth/login', {
           "username":email,
           "password":password
         })
@@ -59,6 +96,7 @@ const Home: NextPage = () => {
       } catch {
         Swal.fire('Login/Senha inválidos','','error')
         setLoading(false)
+        return 0;
       }
     }
 
@@ -67,10 +105,9 @@ const Home: NextPage = () => {
       localStorage.setItem('CTPORTASABERTASAUTHID', response.data.id)
       localStorage.setItem('CTPORTASABERTASAUTHTYPE', response.data.type)
       localStorage.setItem('CTPORTASABERTASAUTHNAME', response.data.name)
-      localStorage.setItem('CTPORTASABERTASAMOUNTSTUDENTS', response.data.studentsAmount)
-      Router.push('/events')
+      localStorage.setItem('CTPORTASABERTASAMOUNTSTUDENTS', response.data.studentsAmount) 
+      return 1;
     }
-
   }
 
   useEffect(()=>{
@@ -89,20 +126,30 @@ const Home: NextPage = () => {
 
       <h1>Login</h1>
 
+      {passwordForgotten?<span onClick={()=>setPasswordForgotten(0)} style={{cursor:'pointer'}}>Voltar</span>:""}
+
       {
-        passwordForgotten?(
+        passwordForgotten==1?(
           <form>
             <span>INSIRA O EMAIL PARA RECUPERAÇÃO</span>
-            <input type={"email"} onChange={(e)=>{setEmail(e.target.value)}}/>
+            <input type={"email"} value={email} onChange={(e)=>{setEmail(e.target.value)}}/>
+          </form>
+        ):passwordForgotten==2?(
+          <form>
+            <span>INSIRA A SENHA ANTIGA</span>
+            <input type={"password"} value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
+
+            <span>INSIRA A NOVA SENHA</span>
+            <input type={"password"} value={newPassword} onChange={(e)=>{setNewPassword(e.target.value)}}/>
           </form>
         ):(
           <form>
             <span>CREDENCIAIS</span>
-            <input type={"email"} placeholder={"EMAIL"} onChange={(e)=>setEmail(e.target.value)}/>
-            <input type={"password"} placeholder={"SENHA"} onChange={(e)=>setPassword(e.target.value)}/>
+            <input type={"email"} placeholder={"EMAIL"} value={email} onChange={(e)=>setEmail(e.target.value)}/>
+            <input type={"password"} placeholder={"SENHA"} value={password} onChange={(e)=>setPassword(e.target.value)}/>
 
             <div className={styles.bottomForm}>
-              <span onClick={()=>setPasswordForgotten(true)}>ESQUECI A SENHA</span>
+              <span onClick={()=>setPasswordForgotten(1)}>ESQUECI A SENHA</span>
               <br />
               <Link href="./signup">
                 <span><FiLogIn size={30} style={{marginRight: '5px'}}/> CADASTRAR</span>
@@ -114,8 +161,14 @@ const Home: NextPage = () => {
       
       
 
-      <div onClick={passwordForgotten?()=>handleForgotten():()=>handleSubmit()}>
-        <Button text={passwordForgotten?"RECUPERAR SENHA":"FAZER LOGIN"} />
+      <div 
+        onClick={passwordForgotten==1
+          ?()=>handleForgotten()
+          :passwordForgotten==2
+          ?()=>handleChangePassword()
+          :()=>{handleSubmit(); Router.push("/events")}}>
+
+        <Button text={passwordForgotten==1?"RECUPERAR SENHA":passwordForgotten==2?"SALVAR NOVA SENHA":"FAZER LOGIN"} />
       </div>
       <div className={styles.loading_container} style={loading?{}:{visibility:'hidden'}}><Spinner /></div>
       <Footer />
