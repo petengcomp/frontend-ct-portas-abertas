@@ -13,6 +13,7 @@ import Router from 'next/router';
 import Swal from 'sweetalert2'
 import { Spinner } from "react-activity";
 import "react-activity/dist/library.css";
+import { AllEvents } from '../components/AllEvents';
 
 const Home: NextPage = () => {
 
@@ -123,6 +124,8 @@ const Home: NextPage = () => {
           <Image src={HeaderBanner} alt="Banner CT Portas Abertas" layout="responsive"/>
         </div>
       </div>
+
+      <AllEvents />
 
       <h1>Login</h1>
 
