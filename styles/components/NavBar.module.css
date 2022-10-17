@@ -24,6 +24,7 @@
   color: white;
   font-size: 11pt;
   cursor: pointer;
+  text-align: center;
 }
 
 .navbarContainer ul li {
@@ -39,4 +40,10 @@
 
 #selected {
   color: var(--orange);
+}
+
+@media (max-width: 380px) {
+  .navbarContainer ul {
+    font-size: 10pt;
+  }
 }

@@ -132,7 +132,7 @@ const Events: NextPage = () => {
                 setSelectedEvents={setSelectedEvents}
                 showSubscriptions={showSubscriptions}/>
 
-            <div onClick={handleConfirmation} style={showSubscriptions?{display:'none'}:{}}><Button text="Salvar Inscrições"/></div>
+            <div onClick={handleConfirmation} style={showSubscriptions?{display:'none'}:{marginTop: '20px'}}><Button text="Salvar Inscrições"/></div>
 
             <Footer />
         </main>

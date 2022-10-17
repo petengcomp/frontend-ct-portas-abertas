@@ -65,3 +65,43 @@
   width: 100%;
   overflow: hidden;
 }
+
+@media (max-width: 1000px) {
+  .signTypeContainer {
+    width: 50%;
+  }
+}
+
+@media (max-width: 800px) {
+  .signTypeContainer {
+    width: 70%;
+  }
+}
+
+@media (max-width: 565px) {
+  .signTypeContainer {
+    width: 90%;
+  }
+}
+@media (max-width: 450px) {
+  .dividerLine {
+    height: 5rem;
+  }
+  .innerTypeContainer p {
+    font-size: 20pt;
+  }
+  .innerTypeContainer {
+    font-size: 80pt;
+  }
+}
+@media (max-width: 360px) {
+  .dividerLine {
+    height: 4rem;
+  }
+  .innerTypeContainer p {
+    font-size: 17pt;
+  }
+  .innerTypeContainer {
+    font-size: 70pt;
+  }
+}
