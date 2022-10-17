@@ -1,0 +1,94 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.banner_container {
+  width: 100%;
+  background-color: #0A0E11;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow:hidden;
+  box-shadow: 0px 0px 10px black;
+}
+
+.banner_inside_container {
+  max-width: 1000px;
+  width: 70%;
+}
+
+
+.container h1, .container h2 {
+  font-weight: 100;
+}
+
+.subtitle_container{
+  display: flex;
+  justify-content: space-around;
+  width: 30rem;
+  color: var(--orange);
+  margin-top: -2rem;
+}
+
+.subtitle_container div{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.booth_card{
+  width: 30rem;
+  height: 10rem;
+  background-color: var(--darkBlue);
+  display: flex;
+  justify-content: space-between;
+
+  transition: .5s;
+}
+
+.booth_card h1 {
+  font-size: 15pt;
+}
+
+.lab_title {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--dark);
+  width: 30%;
+  padding: 0 1rem;
+  transition: .5s;
+}
+
+.booth_title {
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  text-align: right;
+  width: 70%;
+}
+
+.container section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.booth_card:hover {
+  transform: scale(1.1);
+  background-color: var(--dark);
+  color: var(--orange);
+}
+
+.booth_card:hover .lab_title{
+  background-color: var(--orange);
+  color: var(--dark);
+}
+
+
+

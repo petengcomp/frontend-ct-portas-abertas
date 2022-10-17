@@ -9,6 +9,7 @@ import { api } from "../services/api";
 import Router from "next/router";
 import { Switch } from "../components/Switch";
 import Swal from 'sweetalert2'
+import { FiEdit3 } from "react-icons/fi";
 
 const Events: NextPage = () => {
     
@@ -16,6 +17,10 @@ const Events: NextPage = () => {
     const [showSubscriptions, setShowSubscriptions] = useState<Boolean>(false);
     const [authName, setAuthName] = useState<string | null>("");
     const [amountStudents, setAmountStudents] = useState<string | null>("0");
+
+    async function handleUpdateStudentAmount(){
+        //TODO: API ROUTE TO CHANGE STUDENT AMOUNT
+    }
 
     async function handleConfirmation(){
         if (selectedEvents.length<=0) {
@@ -25,7 +30,9 @@ const Events: NextPage = () => {
 
         let events:Array<string>=[]
         await Promise.all(selectedEvents.map(async(e)=>{
-            await api.get(`events/${e}`).then((response)=>{
+            await api.post(`events/${e}`,{
+                key:process.env.NEXT_PUBLIC_API_KEY
+            }).then((response)=>{
               if (response) events = [...events, response.data.title]
             }).catch((e)=>{
                 Swal.fire('Houve um problema', e.response.data.message, 'error')
@@ -109,7 +116,12 @@ const Events: NextPage = () => {
                 <h2>Logado como <span>{authName}</span></h2>
                 {amountStudents!='0'
                 ?
-                (<p>Número de alunos: {amountStudents}</p>)
+                (
+                    <div>
+                        <p>Número de alunos: {amountStudents}</p>
+                        <div onClick={handleUpdateStudentAmount}><FiEdit3 /></div>
+                    </div>
+                )
                 :
                 ""}
                 <h4 onClick={logout}>DESLOGAR</h4>

@@ -66,3 +66,7 @@
   from { transform: translateY(-40rem)}
   to { transform: translateY(0)}
 }
+
+.loading_container {
+  margin-top: 2rem;
+}

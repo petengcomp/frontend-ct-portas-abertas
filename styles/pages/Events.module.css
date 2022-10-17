@@ -33,6 +33,19 @@
   color:var(--orange);
 }
 
+.user_info div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;  
+  color: white;
+}
+
+.user_info div div {
+  color: var(--orange);
+  font-size: 20pt;
+  cursor: pointer;
+}
+
 .banner_container {
   width: 100%;
 }
