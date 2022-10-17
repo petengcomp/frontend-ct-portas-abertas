@@ -10,6 +10,7 @@ import styles from "../styles/pages/Booths.module.css"
 import Image from "next/image";
 import { api } from "../services/api";
 
+
 const URLMAPSCTIV = "https://www.google.com.br/maps/place/Estacionamento+do+Centro+Tecnol%C3%B3gico+-+Goiabeiras,+Vit%C3%B3ria+-+ES,+29075-053/@-20.2729003,-40.30469,18.17z/data=!4m5!3m4!1s0xb8180667a8685d:0x946655d5089396fd!8m2!3d-20.2725083!4d-40.3047945"
 
 const Booths: NextPage = () =>{
