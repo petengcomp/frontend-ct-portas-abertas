@@ -117,7 +117,7 @@ const Home: NextPage = () => {
 
   return (
     <main className={styles.container}>
-      <NavBar />
+      <NavBar localPage={"index"} />
 
       <div className={styles.banner_container}>
         <div className={styles.banner_inside_container}>

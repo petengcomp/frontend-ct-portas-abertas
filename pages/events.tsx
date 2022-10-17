@@ -106,7 +106,7 @@ const Events: NextPage = () => {
 
     return (
         <main className={styles.container}>
-            <NavBar />
+            <NavBar localPage={"events"} />
 
             <h1>INSCRIÇÃO NOS EVENTOS</h1>
 

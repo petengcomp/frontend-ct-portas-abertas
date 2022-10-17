@@ -5,11 +5,16 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import Head from 'next/head'
 
-export default function NavBar() {
+interface NavBarProps {
+  localPage: string
+}
+
+export default function NavBar({localPage}:NavBarProps) {
   const [page,setPage] = useState<string | null>("");
 
   useEffect(()=>{
-    setPage(localStorage.getItem('CTPORTASABERTASPAGE'))
+    // setPage(localStorage.getItem('CTPORTASABERTASPAGE'))
+    setPage(localPage)
   },[])
 
   return (

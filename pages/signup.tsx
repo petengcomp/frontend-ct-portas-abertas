@@ -17,7 +17,7 @@ const SignUp: NextPage = () => {
 
   return (
     <main className={styles.container}>
-      <NavBar />
+      <NavBar localPage={"signup"} />
 
       <h1>Formulário de Cadastro</h1>
 

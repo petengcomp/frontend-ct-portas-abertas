@@ -39,7 +39,7 @@ const Booths: NextPage = () =>{
 
   return(
     <main className={styles.container}>
-    <NavBar />
+    <NavBar localPage={"booths"} />
 
     <div className={styles.banner_container}>
       <div className={styles.banner_inside_container}>
