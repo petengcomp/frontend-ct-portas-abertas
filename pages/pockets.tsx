@@ -11,35 +11,37 @@ import Image from "next/image";
 import { api } from "../services/api";
 
 
-export const URLMAPSCTIV = "https://www.google.com.br/maps/place/Estacionamento+do+Centro+Tecnol%C3%B3gico+-+Goiabeiras,+Vit%C3%B3ria+-+ES,+29075-053/@-20.2729003,-40.30469,18.17z/data=!4m5!3m4!1s0xb8180667a8685d:0x946655d5089396fd!8m2!3d-20.2725083!4d-40.3047945"
+import { URLMAPSCTIV } from "./booths"
 
-const Booths: NextPage = () =>{
+const Pockets: NextPage = () =>{
   
 
-  const [ booths, setBooths ] = useState<Array<EventBoxProps>>();
+  const [ pockets, setPockets ] = useState<Array<EventBoxProps>>();
 
 
-  async function fetchBooths(){
+  async function fetchPockets(){
     const response = await api.post('events', {
       key:process.env.NEXT_PUBLIC_API_KEY
     })
 
-    let boothsArray:Array<EventBoxProps> = []
+    console.log(response.data)
+
+    let pocketsArray:Array<EventBoxProps> = []
     response.data.map((e:EventBoxProps)=>{
-      if (e.type=="booth") boothsArray = [...boothsArray, e]
+      if (e.type=="pocket") pocketsArray = [...pocketsArray, e]
     })
 
-    setBooths(boothsArray)
+    setPockets(pocketsArray)
   }
 
   useEffect(()=>{
-    fetchBooths()
-    localStorage.setItem('CTPORTASABERTASPAGE', 'booths')
+    fetchPockets()
+    localStorage.setItem('CTPORTASABERTASPAGE', 'pockets')
   }, [])
 
   return(
     <main className={styles.container}>
-    <NavBar localPage={"booths"} />
+    <NavBar localPage={"pockets"} />
 
     <div className={styles.banner_container}>
       <div className={styles.banner_inside_container}>
@@ -47,7 +49,7 @@ const Booths: NextPage = () =>{
       </div>
     </div>
     
-    <h1>MOSTRAS DE PROJETOS DISPONÍVES PARA VISITAÇÃO</h1>
+    <h1>PALESTRAS DINÂMICAS DE CURTA DURAÇÃO</h1>
     <div className={styles.subtitle_container}>
       <h2>DE 08:00 ATÉ 17:00</h2>
       <div>
@@ -58,7 +60,7 @@ const Booths: NextPage = () =>{
 
     <section>
       {
-        booths?.map((b, idx)=>(
+        pockets?.map((b, idx)=>(
           <div key={idx} className={styles.booth_card}>
             <div className={styles.lab_title}><h1>{b.local}</h1></div>
             <div className={styles.booth_title}><h1>{b.title}</h1></div>
@@ -73,4 +75,4 @@ const Booths: NextPage = () =>{
   )
 }
 
-export default Booths;
+export default Pockets;
