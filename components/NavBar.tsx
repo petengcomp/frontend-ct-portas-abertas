@@ -36,16 +36,20 @@ export default function NavBar({localPage}:NavBarProps) {
           <li id={page=='index'?styles.selected:""}>PÁGINA INICIAL</li>
         </Link>
 
+        <Link href="./signup">
+          <li id={page=='signup'?styles.selected:""}>CADASTRO</li>
+        </Link>
+
         <Link href="./booths">
-          <li id={page=='booths'?styles.selected:""}>ESTANDES</li>
+          <li id={page=='booths'?styles.selected:""}>MOSTRA DE PROJETOS</li>
         </Link>
 
         <Link href="./events">
-          <li id={page=='events'?styles.selected:""}>EVENTOS</li>
+          <li id={page=='events'?styles.selected:""}>INSCRIÇÃO EM ATIVIDADES</li>
         </Link>
 
-        <Link href="./signup">
-          <li id={page=='signup'?styles.selected:""}>CADASTRO</li>
+        <Link href="./pockets">
+          <li id={page=='pockets'?styles.selected:""}>PALESTRAS POCKET</li>
         </Link>
       </ul>
     </div>
