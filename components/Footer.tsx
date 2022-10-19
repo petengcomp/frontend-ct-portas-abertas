@@ -4,6 +4,7 @@ import UfesLogo from '../assets/UfesLogo.svg'
 import IntrocompLogo from '../assets/IntrocompLogo.svg'
 import PETLogo from '../assets/PETLogo.svg'
 import CTLogo from '../assets/CT70ANOS.svg'
+import NCDLogo from '../assets/NCDLogo.png' 
 
 export default function Footer() {
   return (
@@ -20,7 +21,9 @@ export default function Footer() {
         <div>
           <Image src={IntrocompLogo} alt="Introcomp logo rodape" layout="responsive" />
           <Image src={PETLogo} alt="PET logo rodape" layout="responsive" />
+          <Image src={NCDLogo} alt="NCD logo rodape" layout="responsive" />
         </div>
+
       </div>
     </div>
   )
