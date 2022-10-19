@@ -30,7 +30,7 @@ export function ScheduleColumn({
       unsubscribe(id)
       return
     }
-    
+
     if (selectedEvents.includes(id))
       setSelectedEvents(selectedEvents.filter((item) => item != id));
     else setSelectedEvents([...selectedEvents, id]);

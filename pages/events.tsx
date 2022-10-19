@@ -17,12 +17,15 @@ const Events: NextPage = () => {
     const [showSubscriptions, setShowSubscriptions] = useState<Boolean>(false);
     const [authName, setAuthName] = useState<string | null>("");
     const [amountStudents, setAmountStudents] = useState<string | null>("0");
+    const [day, setDay] = useState<number>(22);
 
     async function handleUpdateStudentAmount(){
         //TODO: API ROUTE TO CHANGE STUDENT AMOUNT
     }
 
     async function handleConfirmation(){
+        //TODO: CHECK FOR EVENTS ON THE SAME DATE/TIME
+
         if (selectedEvents.length<=0) {
             Swal.fire('Pera lá','Escolha eventos para se inscrever!','warning')
             return
@@ -104,11 +107,20 @@ const Events: NextPage = () => {
     }, [])
 
 
+    useEffect(()=>{
+        setSelectedEvents([])
+    },[day])
+
     return (
         <main className={styles.container}>
             <NavBar localPage={"events"} />
 
-            <h1>INSCRIÇÃO NOS EVENTOS</h1>
+            <h1>INSCRIÇÃO NAS VISITAS E OFICINAS</h1>
+
+            <div className={styles.info_container}>
+                <p>Olá, use esta página para realizar sua inscrição nas <span>visitas guiadas</span> (trilhas) ou nas <span>oficinas</span> disponíveis. 
+                O sistema de inscrição nesses eventos é necessário pois as <span>vagas são limitadas</span>, então não perca tempo e garanta sua presença!</p>
+            </div>
 
             <Switch option={showSubscriptions} setOption={setShowSubscriptions}/>
 
@@ -127,10 +139,23 @@ const Events: NextPage = () => {
                 <h4 onClick={logout}>DESLOGAR</h4>
             </div>
 
+
+
+            <div className={styles.day_selector}>
+                <h5>PROGRAMAÇÃO DO DIA </h5>
+                <select onChange={(e)=>setDay(parseInt(e.target.value))}>
+                    <option value={22}>22</option>
+                    <option value={23}>23</option>
+                </select>
+                <h5>DE NOVEMBRO</h5>        
+            </div>
+            
+
             <Table 
                 selectedEvents={selectedEvents}
                 setSelectedEvents={setSelectedEvents}
-                showSubscriptions={showSubscriptions}/>
+                showSubscriptions={showSubscriptions}
+                day={day}/>           
 
             <div onClick={handleConfirmation} style={showSubscriptions?{display:'none'}:{marginTop: '20px'}}><Button text="Salvar Inscrições"/></div>
 
