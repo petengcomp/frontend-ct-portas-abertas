@@ -18,10 +18,28 @@
 }
 
 .innerContainer div {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 7rem;
-  width: 25rem;
+  display: flex;
+  justify-content: center;
+  width: 50%;
+}
+
+.supportContainer {
+  width: 30%;
+}
+
+.colaboratorsContainer {
+  width: 90%;
+  margin-bottom: 3rem;
+}
+
+.supportContainer div {
+  height: 7rem;
+  position: relative;
+}
+
+.colaboratorsContainer div {
+  height: 3rem;
+  position: relative;
 }
 
 @media (max-width: 730px) {
