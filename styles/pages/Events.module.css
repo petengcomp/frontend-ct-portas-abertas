@@ -49,3 +49,44 @@
 .banner_container {
   width: 100%;
 }
+
+.info_container {
+  width: 50%;
+  text-align: center;
+  color: var(--darkBlue);
+  font-size: 15pt;
+  margin-bottom: 2rem;
+}
+
+.info_container span {
+  text-decoration: underline;
+}
+
+.day_selector {
+  display: flex;
+  align-items:center;
+  justify-content: center;
+}
+
+.day_selector h5 {
+  font-weight: 100;
+  font-size: 25pt;
+  margin: 5rem 0;
+}
+
+.day_selector h5 span {
+  color: var(--orange);
+}
+
+.day_selector select {
+  margin: 0 1rem;
+  font-size: 25pt;
+  background-color: transparent;
+  border: none;
+  color: var(--orange);
+  font-weight: bold;
+}
+
+.day_selector option {
+  background-color: var(--dark);
+}

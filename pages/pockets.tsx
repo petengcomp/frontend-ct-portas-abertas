@@ -51,7 +51,6 @@ const Pockets: NextPage = () =>{
     
     <h1>PALESTRAS DINÂMICAS DE CURTA DURAÇÃO</h1>
     <div className={styles.subtitle_container}>
-      <h2>DE 08:00 ATÉ 17:00</h2>
       <div>
         <FiMapPin />
         <a href={URLMAPSCTIV} target="_blank" rel="noreferrer"><h2>ESTACIONAMENTO DO CT4</h2></a>
@@ -62,7 +61,13 @@ const Pockets: NextPage = () =>{
       {
         pockets?.map((b, idx)=>(
           <div key={idx} className={styles.booth_card}>
-            <div className={styles.lab_title}><h1>{b.local}</h1></div>
+            <div className={styles.lab_title}>
+              <h5>{b.local}</h5>
+              <ul>
+                <li>{new Date(b.time).toLocaleDateString()}</li>
+                <li>{new Date(b.time).toLocaleTimeString()}</li>
+              </ul>
+            </div>
             <div className={styles.booth_title}><h1>{b.title}</h1></div>
           </div>
         ))

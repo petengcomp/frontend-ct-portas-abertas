@@ -45,7 +45,7 @@ export default function NavBar({localPage}:NavBarProps) {
         </Link>
 
         <Link href="./events">
-          <li id={page=='events'?styles.selected:""}>INSCRIÇÃO EM ATIVIDADES</li>
+          <li id={page=='events'?styles.selected:""}>OFICINAS & TRILHAS</li>
         </Link>
 
         <Link href="./pockets">

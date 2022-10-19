@@ -54,13 +54,12 @@
 }
 
 .lab_title {
-  padding: 1rem;
+  padding: 0 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background-color: var(--dark);
   width: 30%;
-  padding: 0 1rem;
   transition: .5s;
 }
 
@@ -90,5 +89,18 @@
   color: var(--dark);
 }
 
+.lab_title ul {
+  list-style: none;
+  padding: 0;
+  color: var(--orange);
+}
 
+.booth_card:hover .lab_title ul {
+  color: var(--dark);
+}
 
+.lab_title h5 {
+  font-weight: 100;
+  font-size: 15pt;
+  margin: 0;
+}

@@ -10,9 +10,10 @@ interface TableProps {
   selectedEvents: Array<number>
   setSelectedEvents: Function
   showSubscriptions: Boolean
+  day: number
 }
 
-export default function Table({selectedEvents, setSelectedEvents, showSubscriptions}:TableProps) {
+export default function Table({selectedEvents, setSelectedEvents, showSubscriptions, day}:TableProps) {
   const [events, setEvents] = useState<Array<EventBoxProps>>([]);
   const [subEvents, setSubEvents] = useState<Array<EventBoxProps>>([]);
   const [subscribed, setSubscribed] = useState<Array<number>>([]);
@@ -20,8 +21,12 @@ export default function Table({selectedEvents, setSelectedEvents, showSubscripti
   
   function loadSchedules() {
     let times = []; 
-    let start= new Date("2022-11-22T08:00:00.000Z"); //GMT (Brasilia +3 ex: 6h BR == 9h GMT)
-    for(var i = 0;i<23; i++) {
+    let start = new Date();
+
+    if (day==22) start = new Date("2022-11-22T08:00:00.000Z"); //GMT (Brasilia +3 ex: 6h BR == 9h GMT)
+    else if (day==23) start = new Date("2022-11-23T08:00:00.000Z"); //GMT (Brasilia +3 ex: 6h BR == 9h GMT)
+
+    for(var i = 0;i<10; i++) {
       let end = new Date(start.getTime())
       end.setMinutes(end.getMinutes() + 90)
       times[i] = [
@@ -84,7 +89,7 @@ export default function Table({selectedEvents, setSelectedEvents, showSubscripti
   useEffect(()=>{
     fetchEvents()
     loadSchedules()
-  },[showSubscriptions])
+  },[showSubscriptions, day])
 
   return (
     <div className={styles.EventsContainer}>
