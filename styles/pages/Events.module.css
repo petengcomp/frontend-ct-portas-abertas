@@ -51,8 +51,7 @@
 }
 
 .info_container {
-  width: 50%;
-  text-align: center;
+  width: 90%;
   color: var(--darkBlue);
   font-size: 15pt;
   margin-bottom: 2rem;
@@ -60,6 +59,15 @@
 
 .info_container span {
   text-decoration: underline;
+}
+
+.info_container ul li span {
+  color: var(--orange);
+  text-decoration: none;
+}
+
+.info_container h4 {
+  font-weight: 100;
 }
 
 .day_selector {
@@ -71,7 +79,7 @@
 .day_selector h5 {
   font-weight: 100;
   font-size: 25pt;
-  margin: 5rem 0;
+  margin: 3rem 0;
 }
 
 .day_selector h5 span {

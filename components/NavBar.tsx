@@ -44,8 +44,12 @@ export default function NavBar({localPage}:NavBarProps) {
           <li id={page=='booths'?styles.selected:""}>MOSTRA DE PROJETOS</li>
         </Link>
 
-        <Link href="./events">
-          <li id={page=='events'?styles.selected:""}>OFICINAS & TRILHAS</li>
+        <Link href="./visitations">
+          <li id={page=='visitations'?styles.selected:""}>TRILHAS</li>
+        </Link>
+
+        <Link href="./workshops">
+          <li id={page=='workshops'?styles.selected:""}>OFICINAS</li>
         </Link>
 
         <Link href="./pockets">

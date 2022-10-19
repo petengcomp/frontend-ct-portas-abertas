@@ -10,8 +10,9 @@ import Router from "next/router";
 import { Switch } from "../components/Switch";
 import Swal from 'sweetalert2'
 import { FiEdit3 } from "react-icons/fi";
+import { OpenDate } from ".";
 
-const Events: NextPage = () => {
+const Workshops: NextPage = () => {
     
     const [selectedEvents, setSelectedEvents] = useState<Array<number>>([]);
     const [showSubscriptions, setShowSubscriptions] = useState<Boolean>(false);
@@ -85,7 +86,7 @@ const Events: NextPage = () => {
                         headers: { Authorization: `Bearer ${response.data.access_token}` }
                     })
                 } catch(error:any) {
-                    Swal.fire('Houve um erro na inscrição', error.response.data.message, 'error')
+                    Swal.fire('Houve um erro na inscrição', error.response.data.message, 'warning')
                     return
                 }
             }
@@ -103,7 +104,6 @@ const Events: NextPage = () => {
             setAuthName(localStorage.getItem('CTPORTASABERTASAUTHNAME')?localStorage.getItem('CTPORTASABERTASAUTHNAME'):null)
             setAmountStudents(localStorage.getItem('CTPORTASABERTASAMOUNTSTUDENTS')?localStorage.getItem('CTPORTASABERTASAMOUNTSTUDENTS'):null)
         }
-        localStorage.setItem('CTPORTASABERTASPAGE', 'events')
     }, [])
 
 
@@ -113,9 +113,9 @@ const Events: NextPage = () => {
 
     return (
         <main className={styles.container}>
-            <NavBar localPage={"events"} />
+            <NavBar localPage={"workshops"} />
 
-            <h1>INSCRIÇÃO NAS VISITAS E OFICINAS</h1>
+            <h1>INSCRIÇÃO NAS OFICINAS</h1>
 
             <div className={styles.info_container}>
                 <p>Olá, use esta página para realizar sua inscrição nas <span>visitas guiadas</span> (trilhas) ou nas <span>oficinas</span> disponíveis. 
@@ -155,14 +155,21 @@ const Events: NextPage = () => {
                 selectedEvents={selectedEvents}
                 setSelectedEvents={setSelectedEvents}
                 showSubscriptions={showSubscriptions}
-                day={day}/>           
+                day={day}
+                type="workshop"/>           
 
-            <div onClick={handleConfirmation} style={showSubscriptions?{display:'none'}:{marginTop: '20px'}}><Button text="Salvar Inscrições"/></div>
+            {
+                new Date()>=OpenDate?(
+                    <div onClick={handleConfirmation} style={showSubscriptions?{display:'none'}:{marginTop: '20px'}}><Button text="Salvar Inscrições"/></div>
+                ):(
+                    <h1>INSCRIÇÕES ABREM NO DIA {OpenDate.toLocaleDateString()}</h1>
+                )
+            }
 
             <Footer />
         </main>
     )
 }
 
-export default Events;
+export default Workshops;
     

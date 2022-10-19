@@ -7,8 +7,7 @@ import Swal from "sweetalert2";
 
 interface ScheduleColumnProps {
   startEnd: Array<Date>
-  visitations: Array<EventBoxProps> | null
-  workshops: Array<EventBoxProps> | null
+  events: Array<EventBoxProps> | null
   selectedEvents: Array<number>
   setSelectedEvents: Function
   subscribedEvents: Array<number>
@@ -17,8 +16,7 @@ interface ScheduleColumnProps {
 
 export function ScheduleColumn({
   startEnd,
-  visitations,
-  workshops,
+  events,
   selectedEvents,
   setSelectedEvents,
   subscribedEvents,
@@ -80,7 +78,7 @@ export function ScheduleColumn({
   
           setSubscribedEvents(subscribedEvents.filter(e=>e!=id))
         } catch {
-          Swal.fire('Error','Erro ao se desinscrever do evento','error')
+          Swal.fire('Ocorreu um problema','Erro ao se desinscrever do evento','warning')
         }
       }
     }
@@ -92,7 +90,7 @@ export function ScheduleColumn({
       <td>{handleTimeString()}</td>
       <td>
         <div className={styles.EventBoxesContainer}>
-          {visitations?.map((evento:EventBoxProps) => (
+          {events?.map((evento:EventBoxProps) => (
             <span
               key={evento.id}
               onClick={()=>handleSelection(evento.id)}>
@@ -100,27 +98,6 @@ export function ScheduleColumn({
                 id={evento.id}
                 selected={selectedEvents.includes(evento.id)}
                 title={evento.title}
-                capacity={evento.capacity}
-                filled={evento.filled}
-                time={evento.time}
-                type={evento.type}
-                subscribed={subscribedEvents.includes(evento.id)}
-              />
-            </span>
-          ))}
-        </div>
-      </td>
-      <td>
-        <div className={styles.EventBoxesContainer}>
-          {workshops?.map((evento) => (
-            <span
-              key={evento.id}
-              onClick={()=>handleSelection(evento.id)}>
-              <EventBox
-                id={evento.id}
-                selected={selectedEvents.includes(evento.id)}
-                title={evento.title}
-                description={evento.description}
                 capacity={evento.capacity}
                 filled={evento.filled}
                 time={evento.time}

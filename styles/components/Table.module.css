@@ -16,9 +16,9 @@
     font-weight: 100;
 }
 
-.EventsTable th:nth-child(2) {
+/* .EventsTable th:nth-child(2) {
     border-right: 2px solid var(--darkBlue);
-}
+} */
 .EventsTable td:first-child{
     width: 13rem;
     font-size: 16pt;
@@ -28,9 +28,9 @@
     align-items: center;
 }
 
-.EventsTable td:nth-child(2) {
+/* .EventsTable td:nth-child(2) {
     border-right: 2px solid var(--darkBlue);
-}
+} */
 .EventsTable tr:nth-of-type(2n+1) {
     background-color: var(--mediumBlue);
 }

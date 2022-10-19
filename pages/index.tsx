@@ -15,6 +15,8 @@ import { Spinner } from "react-activity";
 import "react-activity/dist/library.css";
 import { AllEvents } from '../components/AllEvents';
 
+export const OpenDate = new Date("2022-11-02")
+
 const Home: NextPage = () => {
 
   const [ email, setEmail ] = useState<string>("");
@@ -70,7 +72,6 @@ const Home: NextPage = () => {
       Swal.fire('Erro na nova senha informada ',`${err.response.data.message}`,'error')
     }
 
-
     setLoading(false)
   }
   
@@ -123,9 +124,7 @@ const Home: NextPage = () => {
         <div className={styles.banner_inside_container}>
           <Image src={HeaderBanner} alt="Banner CT Portas Abertas" layout="responsive"/>
         </div>
-      </div>
-
-      
+      </div>    
 
       <h1>Login</h1>
 
@@ -160,19 +159,18 @@ const Home: NextPage = () => {
             </div>
           </form>
         )
-      }
-      
-      
+      }    
 
       <div 
         onClick={passwordForgotten==1
           ?()=>handleForgotten()
           :passwordForgotten==2
           ?()=>handleChangePassword()
-          :()=>{handleSubmit(); Router.push("/events")}}>
-
+          :()=>{handleSubmit(); Router.push("/workshops")}}>
+          
         <Button text={passwordForgotten==1?"RECUPERAR SENHA":passwordForgotten==2?"SALVAR NOVA SENHA":"FAZER LOGIN"} />
       </div>
+
       <div className={styles.loading_container} style={loading?{}:{visibility:'hidden'}}><Spinner /></div>
 
       <AllEvents />
