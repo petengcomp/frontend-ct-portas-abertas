@@ -125,7 +125,7 @@ const Home: NextPage = () => {
         </div>
       </div>
 
-      <AllEvents />
+      
 
       <h1>Login</h1>
 
@@ -174,6 +174,9 @@ const Home: NextPage = () => {
         <Button text={passwordForgotten==1?"RECUPERAR SENHA":passwordForgotten==2?"SALVAR NOVA SENHA":"FAZER LOGIN"} />
       </div>
       <div className={styles.loading_container} style={loading?{}:{visibility:'hidden'}}><Spinner /></div>
+
+      <AllEvents />
+      
       <Footer />
     </main>
   )
