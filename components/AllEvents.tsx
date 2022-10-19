@@ -18,8 +18,17 @@ export function AllEvents(){
       let v = response.data.filter((e:EventBoxProps)=>e.type=='visit')
       let w = response.data.filter((e:EventBoxProps)=>e.type=='workshop')
       
+      let aux:Array<string> = []
+      let wfiltered:Array<EventBoxProps> = []
+      w.map((i:EventBoxProps)=>{
+        if (!aux.includes(i.title)) {
+          aux = [...aux, i.title]
+          wfiltered = [...wfiltered, i]
+        }
+      })
+
       setVisits(v)
-      setWorkshops(w)
+      setWorkshops(wfiltered)
     } catch(err:any){
       Swal.fire('Erro', 'Houve um problema na conexão com o banco de dados. ' + err.response.data.message,'error')
     }
@@ -28,6 +37,8 @@ export function AllEvents(){
   useEffect(()=>{
     fetchEvents()
   }, [])
+
+  if (!workshops) return (<></>)
 
   return (
     <div className={styles.container}>
