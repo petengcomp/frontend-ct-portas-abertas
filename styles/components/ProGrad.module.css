@@ -1,0 +1,21 @@
+.container {
+  margin-top: 2rem;
+  height: 6em;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  background-image: url("https://www.ufes.br/sites/default/files/field/image/fachada_prograd.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.container div {
+  width: 30%;
+  height: 90%;
+  position: relative;
+  background-color: rgba(0,0,0,.7);
+}
