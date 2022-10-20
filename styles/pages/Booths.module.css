@@ -50,7 +50,7 @@
 }
 
 .booth_card h1 {
-  font-size: 15pt;
+  font-size: 13pt;
 }
 
 .lab_title {
@@ -67,9 +67,10 @@
   padding: 0 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-between;
   text-align: right;
   width: 70%;
+  height: 100%;
 }
 
 .container section {
@@ -104,3 +105,53 @@
   font-size: 15pt;
   margin: 0;
 }
+
+.scheduleContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  list-style: none;
+  min-height: 3rem;
+  width: 100%;
+  overflow: hidden;
+  margin-right: 1rem;
+}
+
+.scheduleContainer li {
+  width: 100%;
+  padding-right: 1rem;
+  visibility: hidden;
+}
+
+.booth_card:hover .scheduleContainer li {
+  visibility: visible;
+}
+
+.booth_card:hover .scheduleContainer {
+  overflow-y: scroll;
+}
+
+.scheduleContainer::-webkit-scrollbar {
+  background-color: var(--darkBlue);
+  width: .5rem;
+}
+
+.scheduleContainer::-webkit-scrollbar-thumb {
+  background-color: var(--orange);
+}
+
+
+@media (max-width:1000px) {
+  .container section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .booth_card {
+    width: 90%;
+  }
+
+}
+

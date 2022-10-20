@@ -14,6 +14,7 @@ import Swal from 'sweetalert2'
 import { Spinner } from "react-activity";
 import "react-activity/dist/library.css";
 import { AllEvents } from '../components/AllEvents';
+import ProGrad from '../components/ProGrad';
 
 export const OpenDate = new Date("2022-11-02")
 
@@ -175,6 +176,8 @@ const Home: NextPage = () => {
 
       <AllEvents />
       
+      <ProGrad />
+
       <Footer />
     </main>
   )
