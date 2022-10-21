@@ -121,6 +121,11 @@ const Visitations: NextPage = () => {
                 <p>Olá, use esta página para realizar sua inscrição nas <span>visitas guiadas</span> (trilhas) ou nas <span>oficinas</span> disponíveis. 
                 O sistema de inscrição nesses eventos é necessário pois as <span>vagas são limitadas</span>, então não perca tempo e garanta sua presença!</p>    
 
+                <p>As saídas para as trilhas ocorrem nos dois dias, sendo 1h30min a duração de cada uma, nos seguintes horários: {' '}
+                    <span>08:00</span>  |   <span>09:30</span>  |   <span>14:00</span>  |   <span>15:30</span></p>
+                
+                    
+
                 <h4>As visitas guiadas serão divididas em Trilhas Temáticas, da seguinte forma:</h4>
                 <ul>
                     <li><span>Trilha 1:</span> Engenharia Ambiental - NQUALIAR, LAGESA, LABSAN, LABHIDRO</li>

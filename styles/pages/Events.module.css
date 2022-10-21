@@ -98,3 +98,8 @@
 .day_selector option {
   background-color: var(--dark);
 }
+
+.info_container p:nth-child(2) span {
+  color: var(--orange);
+  font-size: 17pt;
+}
