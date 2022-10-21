@@ -33,6 +33,15 @@ export function AllEvents(){
         }
       })
 
+      wfiltered.map((f)=>{
+        f.timeArray = f.timeArray.sort((a,b)=>{
+          if (a>b) return 1;
+          else return -1;
+        })
+      })
+
+
+
       setWorkshops(wfiltered)
     } catch(err:any){
       Swal.fire('Erro', 'Houve um problema na conexão com o banco de dados. ' + err.response.data.message,'error')
