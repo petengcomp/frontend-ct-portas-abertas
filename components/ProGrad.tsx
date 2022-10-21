@@ -5,9 +5,10 @@ import SDCLogo from '../assets/SDCLogo.png'
 import PROAECILogo from '../assets/PROAECILogo.png'
 import PROGRADLogo from '../assets/PROGRADLogo.png'
 
+export const PROGRADURL = "https://prograd.ufes.br/mostra2022"
+
 export default function ProGrad() {
 
-  const PROGRADURL = "https://prograd.ufes.br/mostra2022"
 
   return (
     <div className={styles.container} onClick={()=>{window.open(PROGRADURL, '_blank', 'noopener,noreferrer');}}>
