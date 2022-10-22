@@ -64,8 +64,8 @@ const Pockets: NextPage = () =>{
             <div className={styles.lab_title}>
               <h5>{b.local}</h5>
               <ul>
-                <li>{new Date(b.time).toLocaleDateString()}</li>
-                <li>{new Date(b.time).toLocaleTimeString()}</li>
+                <li>{new Date(b.start).toLocaleDateString()}</li>
+                <li>{new Date(b.start).toLocaleTimeString()}</li>
               </ul>
             </div>
             <div className={styles.booth_title}><h1>{b.title}</h1></div>
