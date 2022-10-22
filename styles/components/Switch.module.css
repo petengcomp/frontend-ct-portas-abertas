@@ -1,12 +1,11 @@
 .switch_container {
   display: flex;
-  align-items: center;
   justify-content: flex-start;
-  padding-left: 10vw;
+  align-items: center;
   height: 3rem;
   width: 100%;
   cursor: pointer;
-  color: var(--darkBlue);
+  margin-bottom: 2rem;
 }
 
 .switch_container h3, .switch_container h2 {

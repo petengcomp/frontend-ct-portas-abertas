@@ -6,7 +6,7 @@ import Table from "../components/Table";
 import { useEffect, useState } from "react";
 import Router from "next/router";
 import { Switch } from "../components/Switch";
-import { FiEdit3 } from "react-icons/fi";
+import { FiEdit3, FiSettings } from "react-icons/fi";
 import { OpenDate } from ".";
 import { CheckUser, User } from "../services/checkuser";
 import { api } from "../services/api";
@@ -29,6 +29,8 @@ export async function handleUpdateStudentAmount(){
             amount = a
         },
     })
+
+    if (!amount) return
 
     try {
         await api.patch(`${user.authType}/update-students-amount/${user.authId}`, {
@@ -78,6 +80,7 @@ const Visitations: NextPage = () => {
     const [authName, setAuthName] = useState<string | null>("");
     const [amountStudents, setAmountStudents] = useState<string | null>("0");
     const [day, setDay] = useState<number>(22);
+    const [userInfoCollapsed, setUserInfoCollapsed] = useState<boolean>(true);
     
 
     function logout(){
@@ -104,6 +107,18 @@ const Visitations: NextPage = () => {
         <main className={styles.container}>
             <NavBar localPage={"visitations"} />
 
+            <div className={styles.user_info} >
+                <div 
+                    className={styles.gearIcon}
+                    onClick={()=>setUserInfoCollapsed(!userInfoCollapsed)}><FiSettings /></div>
+                <ul style={userInfoCollapsed?{marginLeft:'-120vw'}:{}}>
+                    <li><Switch option={showSubscriptions} setOption={setShowSubscriptions}/></li>
+                    <li>Logado como <span>{authName}</span></li>
+                    {amountStudents!='0'?(<li><p>Número de alunos: {amountStudents}</p><div onClick={handleUpdateStudentAmount}><FiEdit3 /></div></li>):""}
+                    <li><div onClick={logout} className={styles.logoutContainer}>DESLOGAR</div></li>
+                </ul>
+            </div>
+
             <h1>INSCRIÇÃO NAS VISITAS</h1>
 
             <div className={styles.info_container}>
@@ -127,23 +142,7 @@ const Visitations: NextPage = () => {
                             
                     
             </div>
-
-            <Switch option={showSubscriptions} setOption={setShowSubscriptions}/>
-
-            <div className={styles.user_info}>
-                <h2>Logado como <span>{authName}</span></h2>
-                {amountStudents!='0'
-                ?
-                (
-                    <div>
-                        <p>Número de alunos: {amountStudents}</p>
-                        <div onClick={handleUpdateStudentAmount}><FiEdit3 /></div>
-                    </div>
-                )
-                :
-                ""}
-                <h4 onClick={logout}>DESLOGAR</h4>
-            </div>
+            
 
             <div className={styles.day_selector}>
                 <h5>PROGRAMAÇÃO DO DIA </h5>
@@ -155,10 +154,6 @@ const Visitations: NextPage = () => {
             </div>
             
             <Table showSubscriptions={showSubscriptions} day={day} type="visit"/>           
-
-            {
-                new Date()>=OpenDate?(""):(<h1 style={{color:'var(--dark)'}}>INSCRIÇÕES ABREM NO DIA {OpenDate.toLocaleDateString()}</h1>)
-            }
 
             <Footer />
         </main>

@@ -14,35 +14,59 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  padding-right: 1rem;
+  position: fixed;
   width: 100%;
-  padding-left: 10vw;
-  line-height: 5pt;
+  top: 10rem;
 }
 
-.user_info p{
-  font-size: 15pt;
-}
-
-.user_info span{
-  color: var(--darkBlue);
-}
-
-.user_info h4{
-  font-weight: 100;
+.gearIcon {
+  font-size:20pt;
+  color: var(--orange);
   cursor: pointer;
-  color:var(--orange);
+  background-color: var(--darkBlue);
+  width: fit-content;
+  line-height: 0;
+  border-radius: 0px 100px 100px 0px;
+  padding: 1rem;
 }
 
-.user_info div {
+.user_info ul{
+  background-color: var(--darkBlue);
+  width: fit-content;
+  padding: 1rem 4rem;
+  list-style: none; 
+  padding-left: 0;
+  font-size: 15pt;
+  transition: .5s;
+  border-radius: 0px 1rem 1rem 0px;
+}
+
+.user_info ul li{
+  padding-left: 1rem;
+}
+
+.user_info ul li span{
+  color: var(--orange);
+}
+
+.user_info ul li:nth-child(2) {
+  color: var(--orange);
+}
+
+.user_info ul li:nth-child(3) {
   display: flex;
   align-items: center;
-  gap: 1rem;  
-  color: white;
+  justify-content: space-between;
+  width: 13rem;
 }
 
-.user_info div div {
+.user_info ul li:nth-child(3) div, .user_info ul li:nth-child(4) div {
+  cursor: pointer;
   color: var(--orange);
-  font-size: 20pt;
+}
+
+.logoutContainer {
   cursor: pointer;
 }
 
@@ -102,4 +126,11 @@
 .info_container p:nth-child(2) span {
   color: var(--orange);
   font-size: 17pt;
+}
+
+@media (max-width: 700px){
+  .day_selector h5 {
+    font-size: 12pt;
+  }
+
 }

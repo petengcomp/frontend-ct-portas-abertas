@@ -55,6 +55,11 @@
     .EventsTable td:first-child {
         width: 8rem
     }
+
+    .EventsTable tbody tr td:first-child{
+        margin: 1rem 0;
+        font-size: 10pt;
+    }
 }
 @media (max-width: 500px) {
     .EventsTable th{

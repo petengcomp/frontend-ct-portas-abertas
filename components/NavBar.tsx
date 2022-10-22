@@ -4,6 +4,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Head from 'next/head'
 
+import { FiMenu } from 'react-icons/fi'
+
 import UfesLogo from '../assets/UfesLogo.svg'
 import SDCLogo from '../assets/SDCLogo.png'
 import MOSTRALogo from '../assets/MOSTRALogo.svg'
@@ -18,6 +20,7 @@ const SemanaDoConhecimentoLink = "https://www.ufes.br/conteudo/vem-ai-semana-do-
 
 export default function NavBar({localPage}:NavBarProps) {
   const [page,setPage] = useState<string | null>("");
+  const [menuCollapsed, setMenuCollapsed] = useState<boolean>(true);
 
   useEffect(()=>{
     // setPage(localStorage.getItem('CTPORTASABERTASPAGE'))
@@ -62,7 +65,12 @@ export default function NavBar({localPage}:NavBarProps) {
           </a>
         </div>
       </div>
-      <ul>
+
+      <div 
+        className={styles.menuIconContainer} 
+        onClick={()=>setMenuCollapsed(!menuCollapsed)}
+        ><FiMenu /></div>
+      <ul style={menuCollapsed?{top:'-20rem'}:{top:'5rem'}}>
         <Link href="./">
           <li id={page=='index'?styles.selected:""}>PÁGINA INICIAL</li>
         </Link>
@@ -87,6 +95,8 @@ export default function NavBar({localPage}:NavBarProps) {
           <li id={page=='pockets'?styles.selected:""}>PALESTRAS POCKET</li>
         </Link>
       </ul>
+
+      
     </div>
   )
 }

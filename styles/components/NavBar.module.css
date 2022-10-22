@@ -1,5 +1,4 @@
 .navbarContainer {
-  height: 6rem;
   width: 100%;
   background-color: var(--darkBlue);
   display: flex;
@@ -8,17 +7,18 @@
   align-items: center;
   box-shadow: 0px 0px 5px black;
   z-index: 2;
+  overflow: hidden;
 }
 
 .logoContainer {
   height: 3rem;
-  position: absolute;
   top:0;
   background-color: var(--dark);
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 3;
 }
 
 .logoContainer div {
@@ -37,8 +37,9 @@
   font-size: 11pt;
   cursor: pointer;
   text-align: center;
-  margin-left: 3rem;
-  margin-top: 4rem;
+  background-color: var(--darkBlue);
+  transition: .5s;
+  padding-left: 0;
 }
 
 .navbarContainer ul li {
@@ -56,8 +57,34 @@
   color: var(--orange);
 }
 
-@media (max-width: 380px) {
+.menuIconContainer {
+  display: none;
+  height: 3rem;
+}
+
+@media (max-width: 700px) {
+  .navbarContainer {
+    height: fit-content;
+  }
+  
   .navbarContainer ul {
     font-size: 10pt;
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
   }
+
+  .navbarContainer ul li {
+    margin-bottom: 1rem;
+  }
+
+  .menuIconContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 20pt;
+    color: white;
+  }
+
 }

@@ -133,7 +133,6 @@ export default function Table({showSubscriptions, day, type}:TableProps) {
     <div className={styles.EventsContainer}>
       <table className={styles.EventsTable}>
         <tbody>
-
           {schedules.map((startEnd, index) => (
             <ScheduleColumn
               key={index}

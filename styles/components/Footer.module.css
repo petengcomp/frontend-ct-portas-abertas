@@ -46,17 +46,25 @@
   position: relative;
 }
 
-@media (max-width: 730px) {
-  .innerContainer div {
-    grid-template-columns: 1fr;
-    width: 17rem;
-    gap: 10rem;
+@media (max-width:700px) {
+  .colaboratorsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-}
 
-@media (max-width: 400px) {
-  .innerContainer div {
-    width: 14rem;
+  .colaboratorsContainer div {
+    margin-bottom: 3rem;
+  }
+
+  .supportContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .supportContainer div {
+    margin-bottom: 3rem;
   }
 }
 

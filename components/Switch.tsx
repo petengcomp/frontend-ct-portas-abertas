@@ -14,7 +14,7 @@ export function Switch({option, setOption}:SwitchProps){
           option?(
             <FiToggleRight color={'var(--orange)'}/>
             ) : (
-            <FiToggleLeft color={'var(--darkBlue)'}/>
+            <FiToggleLeft color={'var(--lightBlue)'}/>
           )
         }
       </div>

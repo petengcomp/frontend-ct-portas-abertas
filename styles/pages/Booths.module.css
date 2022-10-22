@@ -39,6 +39,10 @@
   align-items: center;
 }
 
+.subtitle_container div h2{
+  text-decoration: underline;
+}
+
 .booth_card{
   width: 30rem;
   height: 10rem;
@@ -153,5 +157,41 @@
     width: 90%;
   }
 
+  .container section div div h1{
+    font-size: 10pt;
+  }
+}
+
+@media (max-width:800px) {
+  .container h1:first-of-type {
+    text-align: center
+  }
+  
+  .subtitle_container {
+    height: 7em;
+    width: 100%; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;
+    line-height: 10pt;
+  }
+
+  .subtitle_container div {
+    font-size: 20pt;
+  }
+
+  .subtitle_container div h2 {
+    font-size: 15pt;
+    margin-left: 1rem;
+  }
+
+  .lab_title h5 {
+    font-size: 12pt;
+  }
+
+  .lab_title ul {
+    font-size: 10pt;
+  }
 }
 

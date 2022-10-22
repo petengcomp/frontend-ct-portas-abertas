@@ -86,10 +86,6 @@ const Workshops: NextPage = () => {
 
             <Table showSubscriptions={showSubscriptions} day={day} type="workshop"/>           
 
-            {
-                new Date()>=OpenDate?(""):(<h1 style={{color:'var(--dark)'}}>INSCRIÇÕES ABREM NO DIA {OpenDate.toLocaleDateString()}</h1>)
-            }
-
             <Footer />
         </main>
     )
