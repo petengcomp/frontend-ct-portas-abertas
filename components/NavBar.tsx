@@ -61,7 +61,6 @@ export default function NavBar({localPage}:NavBarProps) {
               objectFit="contain"/>
           </a>
         </div>
-
       </div>
       <ul>
         <Link href="./">
