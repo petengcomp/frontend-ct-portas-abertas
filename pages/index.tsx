@@ -16,7 +16,7 @@ import "react-activity/dist/library.css";
 import { AllEvents } from '../components/AllEvents';
 import ProGrad from '../components/ProGrad';
 
-export const OpenDate = new Date("2022-11-02")
+export const OpenDate = new Date("2022-11-02T04:00:00.000Z")
 
 const Home: NextPage = () => {
 

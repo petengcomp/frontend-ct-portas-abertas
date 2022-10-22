@@ -3,14 +3,12 @@ import NavBar from "../components/NavBar";
 import styles from '../styles/pages/Events.module.css'
 import Footer from "../components/Footer";
 import Table from "../components/Table";
-import Button from "../components/Button";
 import { useEffect, useState } from "react";
-import { api } from "../services/api";
 import Router from "next/router";
 import { Switch } from "../components/Switch";
-import Swal from 'sweetalert2'
 import { FiEdit3 } from "react-icons/fi";
 import { OpenDate } from ".";
+import { CheckUser, User } from "../services/checkuser";
 
 const Workshops: NextPage = () => {
     
@@ -24,34 +22,7 @@ const Workshops: NextPage = () => {
         //TODO: API ROUTE TO CHANGE STUDENT AMOUNT
     }
 
-    async function handleConfirmation(){
-        //TODO: CHECK FOR EVENTS ON THE SAME DATE/TIME
-
-        if (selectedEvents.length<=0) {
-            Swal.fire('Pera lá','Escolha eventos para se inscrever!','warning')
-            return
-        }
-
-        let events:Array<string>=[]
-        await Promise.all(selectedEvents.map(async(e)=>{
-            await api.post(`events/${e}`,{
-                key:process.env.NEXT_PUBLIC_API_KEY
-            }).then((response)=>{
-              if (response) events = [...events, response.data.title]
-            }).catch((e)=>{
-                Swal.fire('Houve um problema', e.response.data.message, 'error')
-                Router.push('/')
-            })
-        }))
-
-        const result = await Swal.fire({
-            text:`Confirmar inscrição nos eventos: ${events.map((e)=>e)}`,
-            showCancelButton: true,
-            confirmButtonText: 'Confirmar',
-        })
-        
-        if (result.isConfirmed) handleInscription()
-    }
+    
 
     function logout(){
         localStorage.setItem('CTPORTASABERTASTOKEN', '')
@@ -62,54 +33,16 @@ const Workshops: NextPage = () => {
         Router.push('/')
     }
 
-    async function handleInscription(){
-        const authType = localStorage.getItem('CTPORTASABERTASAUTHTYPE')
-        let idx=0
-        for (idx=0;idx<selectedEvents.length;idx++) {
-            const e = selectedEvents[idx]
-            try {
-
-                const response = await api.patch(`${authType}/add-event/${localStorage.getItem('CTPORTASABERTASAUTHID')}`, {
-                    "event": { "id": e } 
-                }, {
-                    headers: { Authorization: `Bearer ${localStorage.getItem('CTPORTASABERTASTOKEN')}` }
-                })
-            } catch {
-                let response:any = await api.put('token/refresh', {
-                    "oldToken":localStorage.getItem('CTPORTASABERTASTOKEN')
-                })
-                localStorage.setItem('CTPORTASABERTASTOKEN', response.data.access_token);
-                try{
-                    response = await api.patch(`${authType}/add-event/${localStorage.getItem('CTPORTASABERTASAUTHID')}`, {
-                        "event": { "id": e } 
-                    }, {
-                        headers: { Authorization: `Bearer ${response.data.access_token}` }
-                    })
-                } catch(error:any) {
-                    Swal.fire('Houve um erro na inscrição', error.response.data.message, 'warning')
-                    return
-                }
-            }
-        }
-
-        Router.reload()
-    }
-
     useEffect(()=>{
         if (typeof window !== 'undefined'){
-            if (localStorage.getItem('CTPORTASABERTASAUTHNAME')=='') {
-                Swal.fire('Erro de login','Nenhum login encontrado!','error')
-                Router.push('/')
-            }
-            setAuthName(localStorage.getItem('CTPORTASABERTASAUTHNAME')?localStorage.getItem('CTPORTASABERTASAUTHNAME'):null)
-            setAmountStudents(localStorage.getItem('CTPORTASABERTASAMOUNTSTUDENTS')?localStorage.getItem('CTPORTASABERTASAMOUNTSTUDENTS'):null)
+            let user:User|undefined = CheckUser()
+            if (user){
+                setAuthName(user.authName)    
+                setAmountStudents(user.amountStudents)
+            } 
         }
+        
     }, [])
-
-
-    useEffect(()=>{
-        setSelectedEvents([])
-    },[day])
 
     return (
         <main className={styles.container}>
@@ -151,19 +84,10 @@ const Workshops: NextPage = () => {
             </div>
             
 
-            <Table 
-                selectedEvents={selectedEvents}
-                setSelectedEvents={setSelectedEvents}
-                showSubscriptions={showSubscriptions}
-                day={day}
-                type="workshop"/>           
+            <Table showSubscriptions={showSubscriptions} day={day} type="workshop"/>           
 
             {
-                new Date()>=OpenDate?(
-                    <div onClick={handleConfirmation} style={showSubscriptions?{display:'none'}:{marginTop: '20px'}}><Button text="Salvar Inscrições"/></div>
-                ):(
-                    <h1>INSCRIÇÕES ABREM NO DIA {OpenDate.toLocaleDateString()}</h1>
-                )
+                new Date()>=OpenDate?(""):(<h1 style={{color:'var(--dark)'}}>INSCRIÇÕES ABREM NO DIA {OpenDate.toLocaleDateString()}</h1>)
             }
 
             <Footer />

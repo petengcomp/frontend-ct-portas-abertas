@@ -8,8 +8,12 @@
     display:flex;
     justify-content: center;
     flex-direction: column;
+    background-color: var(--darkBlue);
+    color: white;
 }   
 .EventBoxContainer:hover{
+    background-color: var(--orange);
+    color: var(--darkBlue);
     transform: scale(1.05);
 }
 
@@ -22,16 +26,6 @@
     text-align: center;
     padding: 0;
     margin: 1rem 1rem;
-}
-
-#selected {
-    background-color: var(--orange);
-    color: var(--darkBlue);
-}
-
-#unselected {
-    background-color: var(--darkBlue);
-    color: white;
 }
 
 #subscribed {

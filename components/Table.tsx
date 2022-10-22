@@ -6,19 +6,18 @@ import { ScheduleColumn } from "./ScheduleColumn";
 import Swal from 'sweetalert2'
 
 import styles from "../styles/components/Table.module.css";
+import { CheckUser, User } from "../services/checkuser";
 
 interface TableProps {
-  selectedEvents: Array<number>
-  setSelectedEvents: Function
   showSubscriptions: Boolean
   day: number
   type: string
 }
 
-export default function Table({selectedEvents, setSelectedEvents, showSubscriptions, day, type}:TableProps) {
+export default function Table({showSubscriptions, day, type}:TableProps) {
   const [events, setEvents] = useState<Array<EventBoxProps>>([]);
   
-  const [subscribed, setSubscribed] = useState<Array<number>>([]);
+  const [subscribedEvents, setSubscribedEvents] = useState<Array<number>>([]);
   const [schedules, setSchedules] = useState<Array<Array<Date>>>([]);
   
   function loadSchedules() {
@@ -41,55 +40,87 @@ export default function Table({selectedEvents, setSelectedEvents, showSubscripti
   }
 
   async function fetchEvents(){
+    //calling both requests here because we're using 'filled' update on fetchUserEvents
+    const userEvents = await fetchUserEvents()
+    const allEvents = await fetchAllEvents()
     
+    if (showSubscriptions && userEvents) {
+      setEvents(userEvents)
+    } else if (allEvents) {
+      setEvents(allEvents)
+    }
+  }
 
-    if(!showSubscriptions){
-      try {      
-        const response = await api.post('events',{
-          key:process.env.NEXT_PUBLIC_API_KEY
-        });
-        
-        let eventsFiltered:Array<EventBoxProps> = []
-        response.data?.map((e:EventBoxProps)=>{
-          if (e.type==type) eventsFiltered = [...eventsFiltered, e]
-        })
-        setEvents(eventsFiltered)
-      } catch(err:any){
-        Swal.fire('Erro','Erro ao carregar os eventos ' + err.response.data.message,'error')
-      }
-    } else {
-      let subscribedEvents:Array<number> = [];
-      const authType = localStorage.getItem('CTPORTASABERTASAUTHTYPE')
-      
+  async function fetchUserEvents(){
+    //checking for user
+    let user:User|undefined = CheckUser()
+    if (!user) return
+
+    //try get the user's events with current token
+    let subscribed:Array<number> = [];
+    try{
+      const response = await api.get(`${user.authType}/events/${user.authId}`, {
+        headers: { Authorization: `Bearer ${user.token}` }
+      })
+      response.data?.map((e:EventBoxProps)=>{
+        if (e.type==type) subscribed = [...subscribed, e.id]
+      })
+      setSubscribedEvents(subscribed)
+      return response.data
+    
+    //try refreshing the token if is not valid
+    } catch {
       try{
-        const response = await api.get(`${authType}/events/${localStorage.getItem('CTPORTASABERTASAUTHID')}`, {
-          headers: { Authorization: `Bearer ${localStorage.getItem('CTPORTASABERTASTOKEN')}` }
+        let response = await api.put('token/refresh', {
+          "oldToken":localStorage.getItem('CTPORTASABERTASTOKEN')
         })
+
+        localStorage.setItem('CTPORTASABERTASTOKEN', response.data.access_token);
+
+        user.token = response.data.access_token
+
+        //new request with new token
+        response = await api.get(`${user.authType}/events/${user.authId}`, {
+          headers: { Authorization: `Bearer ${user.token}` }
+        })
+
         response.data?.map((e:EventBoxProps)=>{
-          if (e.type==type) subscribedEvents = [...subscribedEvents, e.id]
+          subscribed = [...subscribed, e.id]
         })
-        setSubscribed(subscribedEvents)
-        setEvents(response.data)
-      } catch {
-        try{
-          let response = await api.put('token/refresh', {
-            "oldToken":localStorage.getItem('CTPORTASABERTASTOKEN')
-          })
-  
-          localStorage.setItem('CTPORTASABERTASTOKEN', response.data.access_token);
-          response = await api.get(`${authType}/events/${localStorage.getItem('CTPORTASABERTASAUTHID')}`, {
-            headers: { Authorization: `Bearer ${localStorage.getItem('CTPORTASABERTASTOKEN')}` }
-          })
-          response.data?.map((e:EventBoxProps)=>{
-            subscribedEvents = [...subscribedEvents, e.id]
-          })
-          setSubscribed(subscribedEvents)
-          setEvents(response.data)
-        } catch (err:any) {
-          Swal.fire('Ops','Nenhuma conta logada, redirecionando para página principal. ' + err.response.data.message,'warning')
-          Router.push('/')
-        }
+
+        setSubscribedEvents(subscribed)
+        return response.data
+
+      } catch (err:any) {
+        Swal.fire('Ops','Nenhuma conta logada, redirecionando...' + err.response.data.message,'warning')
+        Router.push('/')
+        return
       }
+    }
+  }
+  
+  
+  async function fetchAllEvents(){
+    
+    //checking for user
+    let user:User|undefined = CheckUser()
+    if (!user) return
+
+    try {      
+      const response = await api.post('events',{
+        key:process.env.NEXT_PUBLIC_API_KEY
+      });
+      
+      let eventsFiltered:Array<EventBoxProps> = []
+      response.data?.map((e:EventBoxProps)=>{
+        if (e.type==type) eventsFiltered = [...eventsFiltered, e]
+      })
+      
+      return eventsFiltered
+
+    } catch(err:any){
+      Swal.fire('Ops','Erro ao carregar os eventos ' + err.response.data.message,'warning')
+      return
     }
   }
   
@@ -109,14 +140,12 @@ export default function Table({selectedEvents, setSelectedEvents, showSubscripti
               startEnd={startEnd}
               events={events.filter(
                 (item) =>
-                  (new Date(item.time)<startEnd[1]) &&
+                  (new Date(item.start)<startEnd[1]) &&
                   // TODO: add end time to backend to remove 1h30min fixed time
-                  (new Date((new Date(item.time)).getTime() + 90*60*1000)>startEnd[0])
+                  (new Date((new Date(item.start)).getTime() + 90*60*1000)>startEnd[0])
               )}
-              selectedEvents={selectedEvents}
-              setSelectedEvents={setSelectedEvents}
-              subscribedEvents={subscribed}
-              setSubscribedEvents={setSubscribed}
+              subscribedEvents={subscribedEvents}
+              setSubscribedEvents={setSubscribedEvents}
             />
           ))}
         </tbody>

@@ -21,14 +21,14 @@ export function AllEvents(){
       let wfiltered:Array<WorkshopsProps> = []
 
       w.map((i:EventBoxProps)=>{
-        let extendedWorkshop = {...i, timeArray: [i.time]}
+        let extendedWorkshop = {...i, timeArray: [i.start]}
         let found = wfiltered.find((e)=>e.title==i.title)
 
         if (!found) {
           wfiltered = [...wfiltered, extendedWorkshop]
         } else {
           let idx = wfiltered.indexOf(found)
-          found.timeArray = [...found.timeArray, i.time]
+          found.timeArray = [...found.timeArray, i.start]
           wfiltered[idx] = found
         }
       })
