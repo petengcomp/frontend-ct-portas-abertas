@@ -103,7 +103,11 @@ export default function EventBox({
         }
     }
     setSubscribedEvents([...subscribedEvents, id])
-    setFilled(filledUpdatable+1)
+    if (user.authType == 'school') {
+      setFilled(filledUpdatable+parseInt(user.amountStudents))
+    } else if (user.authType == 'student'){
+      setFilled(filledUpdatable+1)
+    }    
   }
 
   async function unsubscribe(){
@@ -161,7 +165,11 @@ export default function EventBox({
       Swal.fire('Ocorreu um problema',err.response.data.message,'warning')
     }
     setSubscribedEvents(subscribedEvents.filter(e=>e!=id))
-    setFilled(filledUpdatable-1)
+    if (user.authType == 'school') {
+      setFilled(filledUpdatable-parseInt(user.amountStudents))
+    } else if (user.authType == 'student'){
+      setFilled(filledUpdatable-1)
+    }
   }
 
   return (

@@ -109,6 +109,7 @@ const Home: NextPage = () => {
       localStorage.setItem('CTPORTASABERTASAUTHTYPE', response.data.type)
       localStorage.setItem('CTPORTASABERTASAUTHNAME', response.data.name)
       localStorage.setItem('CTPORTASABERTASAMOUNTSTUDENTS', response.data.studentsAmount) 
+      Router.push('visitations')
       return 1;
     }
   }
@@ -167,7 +168,7 @@ const Home: NextPage = () => {
           ?()=>handleForgotten()
           :passwordForgotten==2
           ?()=>handleChangePassword()
-          :()=>{handleSubmit(); Router.push("/workshops")}}>
+          :()=>handleSubmit()}>
           
         <Button text={passwordForgotten==1?"RECUPERAR SENHA":passwordForgotten==2?"SALVAR NOVA SENHA":"FAZER LOGIN"} />
       </div>

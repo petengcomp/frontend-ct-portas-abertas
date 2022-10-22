@@ -9,6 +9,68 @@ import { Switch } from "../components/Switch";
 import { FiEdit3 } from "react-icons/fi";
 import { OpenDate } from ".";
 import { CheckUser, User } from "../services/checkuser";
+import { api } from "../services/api";
+import Swal from "sweetalert2";
+
+export async function handleUpdateStudentAmount(){
+
+    let user:User|undefined = CheckUser()
+    if (!user) return
+
+    let amount;
+
+    await Swal.fire({
+        title: 'Insira o número de alunos',
+        input: 'number',
+        text:'Tenha em mente que essa alteração irá modificar suas vagas ocupadas em todas as atividades inscritas',
+        showCancelButton: true,
+        confirmButtonText: 'Alterar',
+        preConfirm: (a) => {
+            amount = a
+        },
+    })
+
+    try {
+        await api.patch(`${user.authType}/update-students-amount/${user.authId}`, {
+            "studentsAmount": amount
+        }, {
+            headers: { Authorization: `Bearer ${user.token}` }
+        })
+    } catch {
+        //if token is invalid, it to refreshes it
+
+        let response:any = await api.put('token/refresh', {
+            "oldToken":localStorage.getItem('CTPORTASABERTASTOKEN')
+        })
+
+        localStorage.setItem('CTPORTASABERTASTOKEN', response.data.access_token);
+        user.token = response.data.access_token
+
+        //with new token we try the request again
+        try{
+            response = await api.patch(`${user.authType}/update-students-amount/${user.authId}`, {
+                "studentsAmount": amount
+            }, {
+                headers: { Authorization: `Bearer ${user.token}` }
+            })
+        } catch(error:any) {
+            Swal.fire('Ops', error.response.data.message, 'warning')
+            return
+        }
+    }
+
+    localStorage.setItem('CTPORTASABERTASAMOUNTSTUDENTS', String(amount))
+
+    await Swal.fire(
+        'Atualizado',
+        'Nova quantidade de alunos: ' + amount,
+        'success'
+    )
+
+    Router.reload()
+
+}
+
 
 const Visitations: NextPage = () => {
     
@@ -16,10 +78,7 @@ const Visitations: NextPage = () => {
     const [authName, setAuthName] = useState<string | null>("");
     const [amountStudents, setAmountStudents] = useState<string | null>("0");
     const [day, setDay] = useState<number>(22);
-
-    async function handleUpdateStudentAmount(){
-        //TODO: API ROUTE TO CHANGE STUDENT AMOUNT
-    }
+    
 
     function logout(){
         localStorage.setItem('CTPORTASABERTASTOKEN', '')
