@@ -16,7 +16,7 @@
   justify-content: flex-start;
   padding-right: 1rem;
   position: fixed;
-  width: 100%;
+  left: 0;
   top: 10rem;
 }
 

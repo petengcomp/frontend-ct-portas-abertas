@@ -111,7 +111,7 @@ const Visitations: NextPage = () => {
                 <div 
                     className={styles.gearIcon}
                     onClick={()=>setUserInfoCollapsed(!userInfoCollapsed)}><FiSettings /></div>
-                <ul style={userInfoCollapsed?{marginLeft:'-120vw'}:{}}>
+                <ul style={userInfoCollapsed?{marginLeft:'-90vw'}:{}}>
                     <li><Switch option={showSubscriptions} setOption={setShowSubscriptions}/></li>
                     <li>Logado como <span>{authName}</span></li>
                     {amountStudents!='0'?(<li><p>Número de alunos: {amountStudents}</p><div onClick={handleUpdateStudentAmount}><FiEdit3 /></div></li>):""}
