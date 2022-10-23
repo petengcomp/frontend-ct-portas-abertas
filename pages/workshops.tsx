@@ -9,6 +9,7 @@ import { Switch } from "../components/Switch";
 import { FiEdit3, FiSettings } from "react-icons/fi";
 import { OpenDate } from ".";
 import { CheckUser, User } from "../services/checkuser";
+import { handleUpdateStudentAmount } from "./visitations";
 
 const Workshops: NextPage = () => {
     
@@ -17,13 +18,7 @@ const Workshops: NextPage = () => {
     const [authName, setAuthName] = useState<string | null>("");
     const [amountStudents, setAmountStudents] = useState<string | null>("0");
     const [day, setDay] = useState<number>(22);
-    const [userInfoCollapsed, setUserInfoCollapsed] = useState<boolean>(true);
-
-    async function handleUpdateStudentAmount(){
-        //TODO: API ROUTE TO CHANGE STUDENT AMOUNT
-    }
-
-    
+    const [userInfoCollapsed, setUserInfoCollapsed] = useState<boolean>(true); 
 
     function logout(){
         localStorage.setItem('CTPORTASABERTASTOKEN', '')
