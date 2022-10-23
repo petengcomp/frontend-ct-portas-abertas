@@ -63,8 +63,6 @@ const Workshops: NextPage = () => {
                 O sistema de inscrição nesses eventos é necessário pois as <span>vagas são limitadas</span>, então não perca tempo e garanta sua presença!</p>
             </div>
 
-            <Switch option={showSubscriptions} setOption={setShowSubscriptions}/>
-            
             <div className={styles.day_selector}>
                 <h5>PROGRAMAÇÃO DO DIA </h5>
                 <select onChange={(e)=>setDay(parseInt(e.target.value))}>
@@ -74,7 +72,6 @@ const Workshops: NextPage = () => {
                 <h5>DE NOVEMBRO</h5>        
             </div>
             
-
             <Table showSubscriptions={showSubscriptions} day={day} type="workshop"/>           
 
             <Footer />
