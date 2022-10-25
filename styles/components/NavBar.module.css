@@ -11,7 +11,7 @@
 }
 
 .logoContainer {
-  height: 3rem;
+  height: 5rem;
   top:0;
   background-color: var(--dark);
   width: 100%;
@@ -23,8 +23,8 @@
 
 .logoContainer div {
   position: relative;
-  width: 3rem;
-  height: 80%;
+  width: 9rem;
+  height: 90%;
   margin-left: 1rem;
 }
 

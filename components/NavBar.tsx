@@ -35,16 +35,16 @@ export default function NavBar({localPage}:NavBarProps) {
         <meta content="CT Portas Abertas - UFES - ES" property="og:title"></meta>
       </Head>
       <div className={styles.logoContainer}>
-        <div title="Site oficial da ufes">
-          <a href="ufes.br">
+      <div title="Mostra de Profissões 2022">
+          <a href={PROGRADURL}>
             <Image 
-              src={UfesLogo}
-              alt="Ufes Logo"
+              src={MOSTRALogo} 
+              alt="Mostra de profissões logo rodape"
               layout="fill"
               objectFit="contain"/>
           </a>
         </div>
-        
+
         <div title="Semana do Conhecimento">
           <a href={SemanaDoConhecimentoLink}>
             <Image 
@@ -55,11 +55,11 @@ export default function NavBar({localPage}:NavBarProps) {
           </a>
         </div>
 
-        <div title="Mostra de Profissões 2022">
-          <a href={PROGRADURL}>
+        <div title="Site oficial da ufes">
+          <a href="ufes.br">
             <Image 
-              src={MOSTRALogo} 
-              alt="Mostra de profissões logo rodape"
+              src={UfesLogo}
+              alt="Ufes Logo"
               layout="fill"
               objectFit="contain"/>
           </a>
