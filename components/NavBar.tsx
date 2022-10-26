@@ -55,7 +55,7 @@ export default function NavBar({localPage}:NavBarProps) {
           </a>
         </div>
 
-        <div title="Site oficial da ufes">
+        <div title="Site oficial da ufes" id={styles.ufeslogo}>
           <a href="ufes.br">
             <Image 
               src={UfesLogo}

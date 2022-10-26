@@ -41,8 +41,12 @@ export default function Table({showSubscriptions, day, type}:TableProps) {
 
   async function fetchEvents(){
     //calling both requests here because we're using 'filled' update on fetchUserEvents
-    const userEvents = await fetchUserEvents()
-    const allEvents = await fetchAllEvents()
+    let userEvents = await fetchUserEvents()
+    let allEvents = await fetchAllEvents()
+    
+    if (!userEvents || !allEvents) return
+    userEvents = userEvents.sort((a:EventBoxProps,b:EventBoxProps)=>{if (a.title>b.title) return 1; else return -1;})
+    allEvents = allEvents.sort((a:EventBoxProps,b:EventBoxProps)=>{if (a.title>b.title) return 1; else return -1;})
     
     if (showSubscriptions && userEvents) {
       setEvents(userEvents)

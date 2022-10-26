@@ -125,3 +125,24 @@
     width: 60%;
   }
 }
+
+
+.textContainer {
+  width: 70%;
+  font-weight: 100;
+  color: var(--darkBlue);
+  font-size: 15pt;
+}
+
+.textContainer ol {
+  text-align: left;
+  list-style: upper-roman;
+}
+
+.textContainer ol span {
+  color: white;
+  opacity: .5;
+  font-style: italic;
+  font-size: 12pt;
+  font-weight: 100;  
+}
