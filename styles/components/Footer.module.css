@@ -25,6 +25,19 @@
   /* width: 50%; */
 }
 
+.innerContainer p {
+  font-weight: 100;
+  font-size: 20pt;
+  margin-bottom: 5rem;
+}
+
+.innerContainer p span{
+  color: var(--orange);
+  text-decoration: underline;
+  margin-left: 2rem;
+  cursor: pointer;
+}
+
 .supportContainer {
   width: 30%;
 }

@@ -17,6 +17,7 @@ export default function Footer() {
   return (
     <div className={styles.footerContainer}>
       <div className={styles.innerContainer}>
+        <p>Email para contato: <span onClick={()=>{window.location.href = "mailto:mail@example.org";}}>ctportasabertas@ufes.br</span></p>
         <h3>Realização</h3>
         <div className={styles.supportContainer}>
           <div><Image src={UfesLogo} alt="Ufes logo rodape" layout="fill"  objectFit={'contain'} /></div>
