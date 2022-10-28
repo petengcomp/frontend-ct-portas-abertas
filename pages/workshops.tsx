@@ -44,7 +44,7 @@ const Workshops: NextPage = () => {
         <main className={styles.container}>
             <NavBar localPage={"workshops"} />
 
-            <div className={styles.user_info} >
+            <div className={styles.user_info} style={authName?{}:{display:"none"}}>
                 <div 
                     className={styles.gearIcon}
                     onClick={()=>setUserInfoCollapsed(!userInfoCollapsed)}><FiSettings /></div>

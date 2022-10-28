@@ -17,8 +17,9 @@ export function CheckUser() {
   let token = localStorage.getItem('CTPORTASABERTASTOKEN')
   
   if (!authType || !authId || !token  || !authName) {
-    Swal.fire('Ops','Nenhuma conta logada, redirecionando para página principal.', 'warning')
-    Router.push('/')
+    Swal.fire('Atenção','Sinta-se livre para visualizar as trilhas e oficinas abaixo, porém saiba que para fazer a inscrição em alguma das atividades, é necessário o cadastro/login na página inicial.', 'warning')
+    // Router.push('/')
+    return
   } else {
     return {authType, authId, token, authName, amountStudents:amountStudents?amountStudents:"0"}
   }

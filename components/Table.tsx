@@ -44,9 +44,8 @@ export default function Table({showSubscriptions, day, type}:TableProps) {
     let userEvents = await fetchUserEvents()
     let allEvents = await fetchAllEvents()
     
-    if (!userEvents || !allEvents) return
-    userEvents = userEvents.sort((a:EventBoxProps,b:EventBoxProps)=>{if (a.title>b.title) return 1; else return -1;})
-    allEvents = allEvents.sort((a:EventBoxProps,b:EventBoxProps)=>{if (a.title>b.title) return 1; else return -1;})
+    if (userEvents)  userEvents = userEvents.sort((a:EventBoxProps,b:EventBoxProps)=>{if (a.title>b.title) return 1; else return -1;})
+    if (allEvents) allEvents = allEvents.sort((a:EventBoxProps,b:EventBoxProps)=>{if (a.title>b.title) return 1; else return -1;})
     
     if (showSubscriptions && userEvents) {
       setEvents(userEvents)
@@ -57,7 +56,7 @@ export default function Table({showSubscriptions, day, type}:TableProps) {
 
   async function fetchUserEvents(){
     //checking for user
-    let user:User|undefined = CheckUser()
+    let user = CheckUser()
     if (!user) return
 
     //try get the user's events with current token
@@ -96,8 +95,8 @@ export default function Table({showSubscriptions, day, type}:TableProps) {
         return response.data
 
       } catch (err:any) {
-        Swal.fire('Ops','Nenhuma conta logada, redirecionando...' + err.response.data.message,'warning')
-        Router.push('/')
+        // Swal.fire('Atenção','Sinta-se livre para visualizar as trilhas e oficinas abaixo, porém saiba que para fazer a inscrição em alguma das atividades, é necessário o cadastro/login na página inicial.', 'warning')
+        // Router.push('/')
         return
       }
     }
@@ -106,9 +105,9 @@ export default function Table({showSubscriptions, day, type}:TableProps) {
   
   async function fetchAllEvents(){
     
-    //checking for user
-    let user:User|undefined = CheckUser()
-    if (!user) return
+    // //checking for user
+    // let user:User|undefined = CheckUser()
+    // if (!user) return
 
     try {      
       const response = await api.post('events',{

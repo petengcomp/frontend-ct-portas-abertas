@@ -15,7 +15,7 @@ import Swal from "sweetalert2";
 export async function handleUpdateStudentAmount(){
 
     let user:User|undefined = CheckUser()
-    if (!user) return
+    if (!user) return 
 
     let amount;
 
@@ -82,7 +82,6 @@ const Visitations: NextPage = () => {
     const [day, setDay] = useState<number>(22);
     const [userInfoCollapsed, setUserInfoCollapsed] = useState<boolean>(true);
     
-
     function logout(){
         localStorage.setItem('CTPORTASABERTASTOKEN', '')
         localStorage.setItem('CTPORTASABERTASAUTHID', '')
@@ -98,7 +97,7 @@ const Visitations: NextPage = () => {
             if (user){
                 setAuthName(user.authName)    
                 setAmountStudents(user.amountStudents)
-            } 
+            }
         }
         
     }, [])
@@ -107,7 +106,7 @@ const Visitations: NextPage = () => {
         <main className={styles.container}>
             <NavBar localPage={"visitations"} />
 
-            <div className={styles.user_info} >
+            <div className={styles.user_info} style={authName?{}:{display:"none"}}>
                 <div 
                     className={styles.gearIcon}
                     onClick={()=>setUserInfoCollapsed(!userInfoCollapsed)}><FiSettings /></div>
@@ -133,11 +132,11 @@ const Visitations: NextPage = () => {
                 <h4>As visitas guiadas serão divididas em Trilhas Temáticas, da seguinte forma:</h4>
                 <ul>
                     <li><span>Trilha 1:</span> Engenharia Ambiental - NQUALIAR, LAGESA, LABSAN, LABHIDRO</li>
-                    <li><span>Trilha 2:</span> Engenharia Elétrica 01 - LABTEL, NERDS, NTA e lab de intrumentação dinâmica</li>
+                    <li><span>Trilha 2:</span> Engenharia Elétrica 01 - LABTEL, NERDS, NTA e Laboratório de Intrumentação Dinâmica</li>
                     <li><span>Trilha 3:</span> Engenharia Elétrica 02 - LABVISIO, PET ELÉTRICA, LAI, LCI, LEPAC/LACI</li>
                     <li><span>Trilha 4:</span> Engenharia Civil - GEOTECNIA, LABDEST, LEMAC, L@BCIV, LABESBIM, LABHIDRO</li>
                     <li><span>Trilha 5:</span> Computação - PET ENGCOMP, ERUS, LCAD, LPRM, NINFA, LAR</li>
-                    <li><span>Trilha 6:</span> Engenharia Mecânica - NEMOG, PET MECÂNICA, LABGUARÁ, VITÓRIA BAJA, DEM, LFTC, LaMEFT/DEM, LABTECMEC, SOLARES, EÓLICA</li>
+                    <li><span>Trilha 6:</span> Engenharia Mecânica - NEMOG, PET MECÂNICA, LaMEFT/DEM, Laboratório de automação e controle</li>
                 </ul>
                             
                     

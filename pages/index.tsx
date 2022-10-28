@@ -132,7 +132,7 @@ const Home: NextPage = () => {
         <p>
           Em comemoração aos 70 anos do Centro Tecnonógico da Ufes, estamos realizando o &quot;CT de Portas Abertas&quot;, que ocorrerá como parte da Mostra de Profissões da Prograd. O evento oferecerá aos estudantes de Ensino Médio e Técnico do Estado informações importantes sobre os cursos do CT.
           <br/><br/>Quatro tipos de atividades distintas estão previstas na programação do evento:
-        </p>
+        </p>  
 
         <ol>
           <li>Visitas guiadas aos laboratórios (pesquisa/extensão) dos cursos <span>(inscrições limitadas);</span></li>
@@ -142,8 +142,10 @@ const Home: NextPage = () => {
         </ol>
 
         <p>
-          Para se inscrever nos eventos, basta criar uma conta usando a interface abaixo.
+          Para se inscrever nos eventos, basta criar uma conta usando a interface abaixo, quando as inscrições estiverem abertas.
         </p>
+
+        <h1>INSCRIÇÕES ABREM NO DIA 01/11/2022</h1>
 
       </div>
 
