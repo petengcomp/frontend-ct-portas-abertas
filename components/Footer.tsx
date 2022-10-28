@@ -38,7 +38,7 @@ export default function Footer() {
         <div className={styles.colaboratorsContainer}>
           <div><Image src={CNPQLogo} alt="CNPQ logo rodape" layout="fill"  objectFit={'contain'} /></div>
           <div><Image src={FNDCTLogo} alt="FNDCT logo rodape" layout="fill"  objectFit={'contain'} /></div>
-          <div><Image src={PETMECANICALogo} alt="PET Mecanica logo rodape" layout="fill"  objectFit={'contain'} /></div>
+          <div id={styles.petmeclogo}><Image src={PETMECANICALogo} alt="PET Mecanica logo rodape" layout="fill"  objectFit={'contain'} /></div>
           <div><Image src={PETELETRICALogo} alt="PET Eletrica logo rodape" layout="fill"  objectFit={'contain'} /></div>          
         </div>
 
