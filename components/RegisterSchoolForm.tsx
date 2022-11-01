@@ -96,6 +96,7 @@ export const RegisterSchoolForm = () => {
           
           <input type='number' onChange={(e)=>setStudentsAmount(parseInt(e.target.value))} /><br />
           <label>Número de alunos</label><br />
+          <span>O número ideal é de <strong>menos de 20 alunos</strong> por cadastro escolar. Caso a sua turma tenha mais de 20 alunos, favor fazer dois cadastros <strong>(com e-mails diferentes)</strong> para poder se inscrever com mais flexibilidade nos eventos. O Cpf do responsável não precisa ser diferente nos cadastros, apenas o email.</span>
         </div>
       </form>
 

@@ -70,3 +70,8 @@
 .loading_container {
   margin-top: 2rem;
 }
+
+.container form div span strong {
+  font-weight: 100;
+  color: var(--orange);
+}
