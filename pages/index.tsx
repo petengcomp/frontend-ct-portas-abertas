@@ -16,7 +16,7 @@ import "react-activity/dist/library.css";
 import { AllEvents } from '../components/AllEvents';
 import ProGrad from '../components/ProGrad';
 
-export const OpenDate = new Date("2022-11-02T04:00:00.000Z")
+export const OpenDate = new Date("2022-11-01T00:00:00.000Z")
 
 const Home: NextPage = () => {
 
@@ -145,7 +145,7 @@ const Home: NextPage = () => {
           Para se inscrever nos eventos, basta criar uma conta usando a interface abaixo, quando as inscrições estiverem abertas.
         </p>
 
-        <h1>INSCRIÇÕES ABREM NO DIA 01/11/2022</h1>
+        {/* <h1>INSCRIÇÕES ABREM NO DIA 01/11/2022</h1> */}
 
       </div>
 
