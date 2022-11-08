@@ -143,7 +143,6 @@ export default function Table({showSubscriptions, day, type}:TableProps) {
               events={events.filter(
                 (item) =>
                   (new Date(item.start)<startEnd[1]) &&
-                  // TODO: add end time to backend to remove 1h30min fixed time
                   (new Date((new Date(item.start)).getTime() + 90*60*1000)>startEnd[0])
               )}
               subscribedEvents={subscribedEvents}

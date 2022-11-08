@@ -7,6 +7,7 @@ import Button from './Button'
 
 import { Spinner } from "react-activity";
 import "react-activity/dist/library.css";
+import { validateCPF } from './RegisterSchoolForm';
 
 export const RegisterStudentForm = () => {
   const [name, setName] = useState<string>("");
@@ -26,14 +27,16 @@ export const RegisterStudentForm = () => {
       return
     }
 
-    if (cpf && !validateCPF(cpf)) {
+    let formatCpf = (cpf && cpf <= 9999999999) ? "0" + String(cpf) : String(cpf)
+
+    if (formatCpf && !validateCPF(formatCpf)) {
       Swal.fire('CPF Inválido','Digite novamente','error')
       setLoading(false);
       return
     }
     
     await api.post('student', {
-      name, cpf:String(cpf), password, email, key:process.env.NEXT_PUBLIC_API_KEY
+      name, cpf:formatCpf, password, email, key:process.env.NEXT_PUBLIC_API_KEY
     }).then(()=>{
       Swal.fire('Cadastrado(a) com sucesso!','Faça seu login para acessar os eventos','success')
       Router.push('/')
@@ -41,25 +44,6 @@ export const RegisterStudentForm = () => {
       setLoading(false);
       err.response.data.message.map((m:string)=>alert(m))
     })
-  }
-
-  function validateCPF(num:number){
-    let v1=0, v2=0;
-    let str=num.toString();
-    if (str.length>11) return 0;
-    let arr = []
-    for(var i=0;i<str.length-2;i++) arr[i] = str[i];
-    arr = arr.reverse();
-    for(var i=0;i<arr.length;i++){
-      v1 = v1 + parseInt(arr[i]) * (9-(i%10));
-      v2 = v2 + parseInt(arr[i]) * (9-((i+1)%10));
-    }
-    v1=(v1%11)%10;
-    v2=v2+v1*9;
-    v2=(v2%11)%10;
-
-    if (parseInt(str.slice(-2,-1))!=v1 || parseInt(str.slice(-1))!=v2) return 0;
-    return 1;
   }
 
 

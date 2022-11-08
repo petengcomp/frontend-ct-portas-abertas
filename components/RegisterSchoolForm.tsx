@@ -8,6 +8,35 @@ import Swal from 'sweetalert2'
 import { Spinner } from "react-activity";
 import "react-activity/dist/library.css";
 
+export function validateCPF(str:String){
+  let v1=0, v2=0;
+
+  if (str.length>11 ||
+    str == "00000000000" || 
+		str == "11111111111" || 
+		str == "22222222222" || 
+		str == "33333333333" || 
+		str == "44444444444" || 
+		str == "55555555555" || 
+		str == "66666666666" || 
+		str == "77777777777" || 
+		str == "88888888888" || 
+		str == "99999999999") return 0;
+
+  let arr = []
+  for(var i=0;i<str.length;i++) arr[i] = str[i];
+
+  for(var i=0;i<arr.length-2;i++){  v1 = v1 + parseInt(arr[i]) * (arr.length-1-i);  }
+  for(var i=0;i<arr.length-1;i++){  v2 = v2 + parseInt(arr[i]) * (arr.length-i);  }
+
+  v1=(v1*10)%11 < 10 ? (v1*10)%11 : 0;
+  v2=(v2*10)%11 < 10 ? (v2*10)%11 : 0;
+
+  if (parseInt(str.slice(-2,-1))!=v1 || parseInt(str.slice(-1))!=v2) return 0;
+  
+  return 1;
+}
+
 export const RegisterSchoolForm = () => {
   const [ name, setName ] = useState<string>("");
   const [ nameRes, setNameRes ] = useState<string>("");
@@ -28,14 +57,16 @@ export const RegisterSchoolForm = () => {
       return
     }
 
-    if (cpfRes && !validateCPF(cpfRes)) {
+    let formatCpf = (cpfRes && cpfRes <= 9999999999) ? "0" + String(cpfRes) : String(cpfRes)
+
+    if (formatCpf && !validateCPF(formatCpf)) {
       Swal.fire('CPF Inválido','Digite novamente','error')
       setLoading(false);
       return
     }
     
     await api.post('school', {
-      name, nameRes, studentsAmount, cpfRes:String(cpfRes), password, emailRes, key:process.env.NEXT_PUBLIC_API_KEY
+      name, nameRes, studentsAmount, cpfRes:formatCpf, password, emailRes, key:process.env.NEXT_PUBLIC_API_KEY
     }).then(()=>{
       Swal.fire('Cadastrado(a) com sucesso!','Faça seu login para acessar os eventos','success')
       setLoading(false);
@@ -47,24 +78,7 @@ export const RegisterSchoolForm = () => {
 
   }
 
-  function validateCPF(num:number){
-    let v1=0, v2=0;
-    let str=num.toString();
-    if (str.length>11) return 0;
-    let arr = []
-    for(var i=0;i<str.length-2;i++) arr[i] = str[i];
-    arr = arr.reverse();
-    for(var i=0;i<arr.length;i++){
-      v1 = v1 + parseInt(arr[i]) * (9-(i%10));
-      v2 = v2 + parseInt(arr[i]) * (9-((i+1)%10));
-    }
-    v1=(v1%11)%10;
-    v2=v2+v1*9;
-    v2=(v2%11)%10;
-
-    if (parseInt(str.slice(-2,-1))!=v1 || parseInt(str.slice(-1))!=v2) return 0;
-    return 1;
-  }
+  
 
 
   return (
