@@ -15,6 +15,7 @@ import { Spinner } from "react-activity";
 import "react-activity/dist/library.css";
 import { AllEvents } from '../components/AllEvents';
 import ProGrad from '../components/ProGrad';
+import Head from 'next/head';
 
 export const OpenDate = new Date("2022-11-01T00:00:00.000Z")
 
@@ -120,6 +121,14 @@ const Home: NextPage = () => {
 
   return (
     <main className={styles.container}>
+      <Head>
+        <title>CT de Portas Abertas - UFES - 2022</title>
+        <link rel="icon" href="/favicon.ico" />
+        <meta charSet="utf-8" />
+        <meta name="description" content="Espaço dedicado à inscrição no evento CT de Portas Abertas da UFES, venha conhecer!"/>
+        <meta content="CT de Portas Abertas - UFES - ES - 2022" property="og:title"></meta>
+      </Head>
+
       <NavBar localPage={"index"} />
 
       <div className={styles.banner_container}>
