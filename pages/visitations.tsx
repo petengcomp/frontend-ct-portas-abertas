@@ -134,7 +134,7 @@ const Visitations: NextPage = () => {
                     <li><span>Trilha 1:</span> Engenharia Ambiental - NQUALIAR, LAGESA, LABSAN, LABHIDRO</li>
                     <li><span>Trilha 2:</span> Engenharia Elétrica 01 - LABTEL, NERDS, NTA e Laboratório de Intrumentação Dinâmica</li>
                     <li><span>Trilha 3:</span> Engenharia Elétrica 02 - LABVISIO, PET ELÉTRICA, LAI, LCI, LEPAC/LACI</li>
-                    <li><span>Trilha 4:</span> Engenharia Civil - GEOTECNIA, LABDEST, LEMAC, L@BCIV, LABESBIM, LABHIDRO</li>
+                    <li><span>Trilha 4:</span> Engenharia Civil - GEOTECNIA, LABDEST, LEMAC, L@BCIV, LABESBIM</li>
                     <li><span>Trilha 5:</span> Computação - PET ENGCOMP, ERUS, LCAD, LPRM, NINFA, LAR</li>
                     <li><span>Trilha 6:</span> Engenharia Mecânica - NEMOG, PET MECÂNICA, LaMEFT/DEM, Laboratório de automação e controle</li>
                 </ul>
