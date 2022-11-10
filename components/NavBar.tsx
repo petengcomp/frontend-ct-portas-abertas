@@ -34,7 +34,7 @@ export default function NavBar({localPage}:NavBarProps) {
         <link rel="icon" href="/favicon.ico" />
         <meta charSet="utf-8" />
         <meta name="description" content="Espaço dedicado à inscrição no evento CT de Portas Abertas da UFES, venha conhecer!"/>
-        <meta content="CT de Portas Abertas - UFES - ES - 2022" property="og:title"></meta>
+        <meta content="CT de Portas Abertas - UFES - ES - 2022" property="og:title" />
       </Head>
       <div className={styles.logoContainer}>
       <div title="Mostra de Profissões 2022">
