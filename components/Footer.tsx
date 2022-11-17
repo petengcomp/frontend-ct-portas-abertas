@@ -9,7 +9,8 @@ import PROEXLogo from '../assets/PROEXLogo.png'
 import MCTILogo from '../assets/MCTILogo.png'
 import CNPQLogo from '../assets/CNPQLogo.png'
 import FNDCTLogo from '../assets/FNDCTLogo.png'
-
+import CREALogo from '../assets/CREALogo.png'
+import SEELogo from '../assets/SEELogo.png'
 import PETMECANICALogo from '../assets/PETMECANICALogo.png'
 import PETELETRICALogo from '../assets/PETELETRICALogo.png'
 
@@ -41,6 +42,11 @@ export default function Footer() {
           <div><Image src={FNDCTLogo} alt="FNDCT logo rodape" layout="fill"  objectFit={'contain'} /></div>
           <div id={styles.petmeclogo}><Image src={PETMECANICALogo} alt="PET Mecanica logo rodape" layout="fill"  objectFit={'contain'} /></div>
           <div><Image src={PETELETRICALogo} alt="PET Eletrica logo rodape" layout="fill"  objectFit={'contain'} /></div>          
+        </div>
+
+        <div className={styles.colaboratorsContainer}>
+          <div><Image src={CREALogo} alt="CREA logo rodape" layout="fill"  objectFit={'contain'} /></div>
+          <div><Image src={SEELogo} alt="SEE logo rodape" layout="fill"  objectFit={'contain'} /></div>
         </div>
 
       </div>
