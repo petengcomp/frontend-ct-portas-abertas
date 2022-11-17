@@ -1,21 +1,24 @@
-import { NextPage } from 'next'
-import Button from '../components/Button';
-import styles from '../styles/pages/Home.module.css'
-import { FiLogIn } from 'react-icons/fi'
-import HeaderBanner from '../assets/HEADER.png'
-import Image from 'next/image';
-import NavBar from '../components/NavBar';
-import Footer from '../components/Footer';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { api } from '../services/api';
 import Router from 'next/router';
-import Swal from 'sweetalert2'
-import { Spinner } from "react-activity";
-import "react-activity/dist/library.css";
+import { NextPage } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+
+
 import { AllEvents } from '../components/AllEvents';
 import ProGrad from '../components/ProGrad';
-import Head from 'next/head';
+import Button from '../components/Button';
+import NavBar from '../components/NavBar';
+import Footer from '../components/Footer';
+
+import styles from '../styles/pages/Home.module.css'
+import HeaderBanner from '../assets/HEADER.png'
+import { api } from '../services/api';
+import Swal from 'sweetalert2'
+
+import { FiLogIn } from 'react-icons/fi'
+import { Spinner } from "react-activity";
+import "react-activity/dist/library.css";
 
 export const OpenDate = new Date("2022-11-01T00:00:00.000Z")
 
@@ -121,15 +124,6 @@ const Home: NextPage = () => {
 
   return (
     <main className={styles.container}>
-
-      <Head>
-        <title>CT de Portas Abertas - UFES - 2022</title>
-        <link rel="icon" href="/favicon.ico" />
-        <meta charSet="utf-8" />
-        <meta name="description" content="Espaço dedicado à inscrição no evento CT de Portas Abertas da UFES, venha conhecer!"/>
-        <meta content="CT de Portas Abertas - UFES - ES - 2022" property="og:title" />
-      </Head>
-
       <NavBar localPage={"index"} />
 
       <div className={styles.banner_container}>
