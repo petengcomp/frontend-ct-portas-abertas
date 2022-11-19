@@ -54,11 +54,22 @@ export default function EventBox({
       confirmButtonText: 'Se inscrever',
     })
 
+    const now = new Date()
+    const expireDate = new Date(start)
+
     if (result.isConfirmed){
-      if (new Date() < OpenDate) {
+      if (now < OpenDate) {
         Swal.fire(
           'Quase lá',
           'As inscrições de atividades do evento CT de Portas Abertas abrem no dia 01/11/2022.',
+          'info'
+        )
+        return
+      } else if ((expireDate.getTime() - now.getTime())/(1000*60*60) <= 1) {
+        Swal.fire(
+          'Agora não dá mais :(',
+          `As inscrições dessa atividade já se expiraram (${Math.round((expireDate.getTime() - now.getTime())/(1000*60)) - 59} minuto(s) atrás),
+           porém você pode tentar ir presencialmente e verificar se sobrou alguma vaga. Boa sorte!`,
           'info'
         )
         return
