@@ -172,7 +172,6 @@ const Home: NextPage = () => {
           </li>
           <li>Mostra de projetos.</li>
           <li>Palestras Pocket.</li>
-          <li>Palestras Pocket.</li>
         </ol>
 
         <p>Em breve programação completa.</p>

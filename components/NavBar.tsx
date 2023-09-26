@@ -1,31 +1,32 @@
-import styles from '../styles/components/NavBar.module.css'
-import { useEffect, useState } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import Head from 'next/head'
+import styles from "../styles/components/NavBar.module.css";
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import Head from "next/head";
 
-import { FiMenu } from 'react-icons/fi'
+import { FiMenu } from "react-icons/fi";
 
-import UfesLogo from '../assets/UfesLogo.svg'
-import SDCLogo from '../assets/SDCLogo.png'
-import MOSTRALogo from '../assets/MOSTRALogo.svg'
+import UfesLogo from "../assets/UfesLogo.svg";
+import SDCLogo from "../assets/SDCLogo.png";
+import MOSTRALogo from "../assets/MOSTRALogo.svg";
 
-import { PROGRADURL } from './ProGrad'
+import { PROGRADURL } from "./ProGrad";
 
 interface NavBarProps {
-  localPage: string
+  localPage: string;
 }
 
-const SemanaDoConhecimentoLink = "https://www.ufes.br/conteudo/vem-ai-semana-do-conhecimento-atencao-aos-prazos-para-participar"
+const SemanaDoConhecimentoLink =
+  "https://www.ufes.br/conteudo/vem-ai-semana-do-conhecimento-atencao-aos-prazos-para-participar";
 
-export default function NavBar({localPage}:NavBarProps) {
-  const [page,setPage] = useState<string | null>("");
+export default function NavBar({ localPage }: NavBarProps) {
+  const [page, setPage] = useState<string | null>("");
   const [menuCollapsed, setMenuCollapsed] = useState<boolean>(true);
 
-  useEffect(()=>{
+  useEffect(() => {
     // setPage(localStorage.getItem('CTPORTASABERTASPAGE'))
-    setPage(localPage)
-  },[])
+    setPage(localPage);
+  }, []);
 
   return (
     <div className={styles.navbarContainer}>
@@ -33,72 +34,85 @@ export default function NavBar({localPage}:NavBarProps) {
         <title>CT de Portas Abertas - UFES - 2022</title>
         <link rel="icon" href="/favicon.ico" />
         <meta charSet="utf-8" />
-        <meta name="description" content="Espaço dedicado à inscrição no evento CT de Portas Abertas da UFES, venha conhecer!"/>
-        <meta content="CT de Portas Abertas - UFES - ES - 2022" property="og:title" />
+        <meta
+          name="description"
+          content="Espaço dedicado à inscrição no evento CT de Portas Abertas da UFES, venha conhecer!"
+        />
+        <meta
+          content="CT de Portas Abertas - UFES - ES - 2022"
+          property="og:title"
+        />
       </Head>
       <div className={styles.logoContainer}>
-      <div title="Mostra de Profissões 2022">
+        <div title="Mostra de Profissões 2022">
           <a href={PROGRADURL}>
-            <Image 
-              src={MOSTRALogo} 
+            <Image
+              src={MOSTRALogo}
               alt="Mostra de profissões logo rodape"
               layout="fill"
-              objectFit="contain"/>
+              objectFit="contain"
+            />
           </a>
         </div>
 
         <div title="Semana do Conhecimento">
           <a href={SemanaDoConhecimentoLink}>
-            <Image 
-              src={SDCLogo} 
+            <Image
+              src={SDCLogo}
               alt="Semana Do Conhecimento logo rodape"
               layout="fill"
-              objectFit="contain"/>
+              objectFit="contain"
+            />
           </a>
         </div>
 
         <div title="Site oficial da ufes" id={styles.ufeslogo}>
           <a href="ufes.br">
-            <Image 
+            <Image
               src={UfesLogo}
               alt="Ufes Logo"
               layout="fill"
-              objectFit="contain"/>
+              objectFit="contain"
+            />
           </a>
         </div>
       </div>
 
-      <div 
-        className={styles.menuIconContainer} 
-        onClick={()=>setMenuCollapsed(!menuCollapsed)}
-        ><FiMenu /></div>
-      <ul style={menuCollapsed?{top:'-20rem'}:{top:'5rem'}}>
+      <div
+        className={styles.menuIconContainer}
+        onClick={() => setMenuCollapsed(!menuCollapsed)}
+      >
+        <FiMenu />
+      </div>
+      <ul style={menuCollapsed ? { top: "-20rem" } : { top: "5rem" }}>
         <Link href="./">
-          <li id={page=='index'?styles.selected:""}>PÁGINA INICIAL</li>
+          <li id={page == "index" ? styles.selected : ""}>PÁGINA INICIAL</li>
         </Link>
 
-        <Link href="./signup">
+        {/* <Link href="./signup">
           <li id={page=='signup'?styles.selected:""}>CADASTRO</li>
-        </Link>
+        </Link> */}
 
         <Link href="./booths">
-          <li id={page=='booths'?styles.selected:""}>MOSTRA DE PROJETOS</li>
+          <li id={page == "booths" ? styles.selected : ""}>
+            MOSTRA DE PROJETOS
+          </li>
         </Link>
 
         <Link href="./visitations">
-          <li id={page=='visitations'?styles.selected:""}>TRILHAS</li>
+          <li id={page == "visitations" ? styles.selected : ""}>TRILHAS</li>
         </Link>
 
-        <Link href="./workshops">
-          <li id={page=='workshops'?styles.selected:""}>OFICINAS</li>
-        </Link>
+        {/* <Link href="./workshops">
+          <li id={page == "workshops" ? styles.selected : ""}>OFICINAS</li>
+        </Link> */}
 
         <Link href="./pockets">
-          <li id={page=='pockets'?styles.selected:""}>PALESTRAS POCKET</li>
+          <li id={page == "pockets" ? styles.selected : ""}>
+            PALESTRAS POCKET
+          </li>
         </Link>
       </ul>
-
-      
     </div>
-  )
+  );
 }
