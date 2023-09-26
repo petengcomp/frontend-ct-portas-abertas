@@ -154,13 +154,13 @@ const Home: NextPage = () => {
 
       <div className={styles.textContainer}>
         <p>
-          Em breve o "CT de Portas Abertas" edição 2023! O evento faz parte da
-          Mostra de Profissões da Prograd, que neste ano irá ocorrer nos dias 17
-          e 18 de outubro de 2023 O CT de Portas Abertas tem com objetivo de
-          divulgar e fomentar cursos de engenharia e tecnologia do CT para os
-          alunos do ensino médio e técnico. O evento oferecerá aos estudantes de
-          Ensino Médio e Técnico do Estado informações importantes sobre os
-          cursos do CT.
+          Em breve o &#34;CT de Portas Abertas&#34; edição 2023! O evento faz
+          parte da Mostra de Profissões da Prograd, que neste ano irá ocorrer
+          nos dias 17 e 18 de outubro de 2023 O CT de Portas Abertas tem com
+          objetivo de divulgar e fomentar cursos de engenharia e tecnologia do
+          CT para os alunos do ensino médio e técnico. O evento oferecerá aos
+          estudantes de Ensino Médio e Técnico do Estado informações importantes
+          sobre os cursos do CT.
           <br />
           <br />
           Atividades previstas na programação do evento:
@@ -168,7 +168,8 @@ const Home: NextPage = () => {
 
         <ol>
           <li>
-            Visitas guiadas aos laboratórios (pesquisa/extensão) dos cursos.
+            Visitas guiadas aos laboratórios &#40;pesquisa/extensão&#41; dos
+            cursos.
           </li>
           <li>Mostra de projetos.</li>
           <li>Palestras Pocket.</li>
