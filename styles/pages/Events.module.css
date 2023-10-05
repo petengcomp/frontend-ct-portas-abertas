@@ -1,12 +1,13 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-  }
-  
-.container h1, .container h2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.container h1,
+.container h2 {
   font-weight: 100;
 }
 
@@ -21,7 +22,7 @@
 }
 
 .gearIcon {
-  font-size:20pt;
+  font-size: 20pt;
   color: var(--orange);
   cursor: pointer;
   background-color: var(--darkBlue);
@@ -31,22 +32,22 @@
   padding: 1rem;
 }
 
-.user_info ul{
+.user_info ul {
   background-color: var(--darkBlue);
   width: fit-content;
   padding: 1rem 4rem;
-  list-style: none; 
+  list-style: none;
   padding-left: 0;
   font-size: 15pt;
-  transition: .5s;
+  transition: 0.5s;
   border-radius: 0px 1rem 1rem 0px;
 }
 
-.user_info ul li{
+.user_info ul li {
   padding-left: 1rem;
 }
 
-.user_info ul li span{
+.user_info ul li span {
   color: var(--orange);
 }
 
@@ -61,7 +62,8 @@
   width: 13rem;
 }
 
-.user_info ul li:nth-child(3) div, .user_info ul li:nth-child(4) div {
+.user_info ul li:nth-child(3) div,
+.user_info ul li:nth-child(4) div {
   cursor: pointer;
   color: var(--orange);
 }
@@ -76,7 +78,7 @@
 
 .info_container {
   width: 90%;
-  color: var(--darkBlue);
+  color: #ffffffce;
   font-size: 15pt;
   margin-bottom: 2rem;
 }
@@ -96,7 +98,7 @@
 
 .day_selector {
   display: flex;
-  align-items:center;
+  align-items: center;
   justify-content: center;
 }
 
@@ -128,9 +130,8 @@
   font-size: 17pt;
 }
 
-@media (max-width: 700px){
+@media (max-width: 700px) {
   .day_selector h5 {
     font-size: 12pt;
   }
-
 }

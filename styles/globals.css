@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Jockey+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Jockey+One&display=swap");
 
 html,
 body {
@@ -6,8 +6,8 @@ body {
   color: white;
   padding: 0;
   margin: 0;
-  font-family: 'Jockey One', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "Jockey One", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: 100;
 }
 
@@ -21,9 +21,9 @@ a {
   outline: 0;
 }
 :root {
-  --lightBlue: #9CA7DE;
-  --mediumBlue: #8994CE;
-  --darkBlue: #35394F;
-  --orange: #85D5E7;
-  --dark: #1F1F24;
+  --lightBlue: #174f17ff;
+  --white: #fefefeff;
+  --mediumBlue: #004200ff;
+  --darkBlue: #013f03ff;
+  --dark: #002600ff;
 }
