@@ -156,7 +156,7 @@ const Home: NextPage = () => {
         <p>
           Em breve o &#34;CT de Portas Abertas&#34; edição 2024! O evento faz
           parte da Mostra de Profissões da Prograd, que neste ano irá ocorrer
-          nos dias 17 e 18 de outubro de 2023 O CT de Portas Abertas tem com
+          nos dias 12 e 13 de novembro de 2024 O CT de Portas Abertas tem com
           objetivo de divulgar e fomentar cursos de engenharia e tecnologia do
           CT para os alunos do ensino médio e técnico. O evento oferecerá aos
           estudantes de Ensino Médio e Técnico do Estado informações importantes
@@ -172,7 +172,8 @@ const Home: NextPage = () => {
             cursos.
           </li>
           <li>Mostra de projetos.</li>
-          <li>Palestras Pocket.</li>
+          <li>Palestra Pocket sobre Inteligência Artificial (13/11 às 10h).</li>
+          <li>Apresentação da banda dos professores.</li>
         </ol>
 
         <p>Em breve programação completa.</p>

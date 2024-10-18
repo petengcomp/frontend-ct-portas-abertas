@@ -31,7 +31,7 @@ export default function NavBar({ localPage }: NavBarProps) {
   return (
     <div className={styles.navbarContainer}>
       <Head>
-        <title>CT de Portas Abertas - UFES - 2022</title>
+        <title>CT de Portas Abertas - UFES</title>
         <link rel="icon" href="/favicon.ico" />
         <meta charSet="utf-8" />
         <meta

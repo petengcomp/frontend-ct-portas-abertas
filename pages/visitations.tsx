@@ -76,37 +76,37 @@ export async function handleUpdateStudentAmount(){
 
 const Visitations: NextPage = () => {
     
-    const [showSubscriptions, setShowSubscriptions] = useState<Boolean>(false);
-    const [authName, setAuthName] = useState<string | null>("");
-    const [amountStudents, setAmountStudents] = useState<string | null>("0");
-    const [day, setDay] = useState<number>(22);
-    const [userInfoCollapsed, setUserInfoCollapsed] = useState<boolean>(true);
+    // const [showSubscriptions, setShowSubscriptions] = useState<Boolean>(false);
+    // const [authName, setAuthName] = useState<string | null>("");
+    // const [amountStudents, setAmountStudents] = useState<string | null>("0");
+    // const [day, setDay] = useState<number>(22);
+    // const [userInfoCollapsed, setUserInfoCollapsed] = useState<boolean>(true);
     
-    function logout(){
-        localStorage.setItem('CTPORTASABERTASTOKEN', '')
-        localStorage.setItem('CTPORTASABERTASAUTHID', '')
-        localStorage.setItem('CTPORTASABERTASAUTHNAME', '')
-        localStorage.setItem('CTPORTASABERTASAUTHTYPE', '')
-        localStorage.setItem('CTPORTASABERTASAMOUNTSTUDENTS', '')
-        Router.push('/')
-    }
+    // function logout(){
+    //     localStorage.setItem('CTPORTASABERTASTOKEN', '')
+    //     localStorage.setItem('CTPORTASABERTASAUTHID', '')
+    //     localStorage.setItem('CTPORTASABERTASAUTHNAME', '')
+    //     localStorage.setItem('CTPORTASABERTASAUTHTYPE', '')
+    //     localStorage.setItem('CTPORTASABERTASAMOUNTSTUDENTS', '')
+    //     Router.push('/')
+    // }
 
-    useEffect(()=>{
-        if (typeof window !== 'undefined'){
-            let user:User|undefined = CheckUser()
-            if (user){
-                setAuthName(user.authName)    
-                setAmountStudents(user.amountStudents)
-            }
-        }
+    // useEffect(()=>{
+    //     if (typeof window !== 'undefined'){
+    //         let user:User|undefined = CheckUser()
+    //         if (user){
+    //             setAuthName(user.authName)    
+    //             setAmountStudents(user.amountStudents)
+    //         }
+    //     }
         
-    }, [])
+    // }, [])
 
     return (
         <main className={styles.container}>
             <NavBar localPage={"visitations"} />
 
-            <div className={styles.user_info} style={authName?{}:{display:"none"}}>
+            {/* <div className={styles.user_info} style={authName?{}:{display:"none"}}>
                 <div 
                     className={styles.gearIcon}
                     onClick={()=>setUserInfoCollapsed(!userInfoCollapsed)}><FiSettings /></div>
@@ -116,9 +116,9 @@ const Visitations: NextPage = () => {
                     {amountStudents!='0'?(<li><p>Número de alunos: {amountStudents}</p><div onClick={handleUpdateStudentAmount}><FiEdit3 /></div></li>):""}
                     <li><div onClick={logout} className={styles.logoutContainer}>DESLOGAR</div></li>
                 </ul>
-            </div>
+            </div> */}
 
-            <h1>INSCRIÇÃO NAS VISITAS</h1>
+            <h1>VISITAS GUIADAS</h1>
 
             <div className={styles.info_container}>
                 <p>Olá, use esta página para realizar sua inscrição nas <span>visitas guiadas</span> (trilhas) ou nas <span>oficinas</span> disponíveis. 
@@ -143,7 +143,7 @@ const Visitations: NextPage = () => {
             </div>
             
 
-            <div className={styles.day_selector}>
+            {/* <div className={styles.day_selector}>
                 <h5>PROGRAMAÇÃO DO DIA </h5>
                 <select onChange={(e)=>setDay(parseInt(e.target.value))}>
                     <option value={22}>22</option>
@@ -152,7 +152,7 @@ const Visitations: NextPage = () => {
                 <h5>DE NOVEMBRO</h5>        
             </div>
             
-            <Table showSubscriptions={showSubscriptions} day={day} type="visit"/>           
+            <Table showSubscriptions={showSubscriptions} day={day} type="visit"/>            */}
 
             <Footer />
         </main>
