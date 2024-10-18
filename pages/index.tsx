@@ -154,7 +154,7 @@ const Home: NextPage = () => {
 
       <div className={styles.textContainer}>
         <p>
-          Em breve o &#34;CT de Portas Abertas&#34; edição 2023! O evento faz
+          Em breve o &#34;CT de Portas Abertas&#34; edição 2024! O evento faz
           parte da Mostra de Profissões da Prograd, que neste ano irá ocorrer
           nos dias 17 e 18 de outubro de 2023 O CT de Portas Abertas tem com
           objetivo de divulgar e fomentar cursos de engenharia e tecnologia do
