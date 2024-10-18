@@ -48,6 +48,16 @@ const Booths: NextPage = () =>{
     </div>
     
     <h1>MOSTRAS DE PROJETOS DISPONÍVES PARA VISITAÇÃO</h1>
+    
+    <ul>
+      <li><h3>Engenharia Ambiental</h3></li>
+      <li><h3>Engenharia Elétrica</h3></li>
+      <li><h3>Engenharia Civil</h3></li>
+      <li><h3>Engenharia da Computação</h3></li>
+      <li><h3>Ciência da Computação</h3></li>
+      <li><h3>Engenharia de Produção</h3></li>
+      <li><h3>Engenharia Mecânica</h3></li>
+    </ul>
     <div className={styles.subtitle_container}>
       <h2>DE 08:00 ATÉ 17:00</h2>
       <div>

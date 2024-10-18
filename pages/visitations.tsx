@@ -121,22 +121,19 @@ const Visitations: NextPage = () => {
             <h1>VISITAS GUIADAS</h1>
 
             <div className={styles.info_container}>
-                <p>Olá, use esta página para realizar sua inscrição nas <span>visitas guiadas</span> (trilhas) ou nas <span>oficinas</span> disponíveis. 
-                O sistema de inscrição nesses eventos é necessário pois as <span>vagas são limitadas</span>, então não perca tempo e garanta sua presença!</p>    
-
-                <p>As saídas para as trilhas ocorrem nos dois dias, sendo 1h30min a duração de cada uma, nos seguintes horários: {' '}
-                    <span>08:00</span>  |   <span>09:30</span>  |   <span>14:00</span>  |   <span>15:30</span></p>
-                
-                    
+                <p>
+                    As visitas guiadas serão realizadas de forma dinâmica. A formação dos grupos que sairão para as trilhas será feita na hora e por demanda.
+                    Cada trilha terá uma duração de 20 minutos.
+                </p>                    
 
                 <h4>As visitas guiadas serão divididas em Trilhas Temáticas, da seguinte forma:</h4>
                 <ul>
-                    <li><span>Trilha 1:</span> Engenharia Ambiental - NQUALIAR, LAGESA, LABSAN, LABHIDRO</li>
-                    <li><span>Trilha 2:</span> Engenharia Elétrica 01 - LABTEL, NERDS, NTA e Laboratório de Intrumentação Dinâmica</li>
-                    <li><span>Trilha 3:</span> Engenharia Elétrica 02 - LABVISIO, PET ELÉTRICA, LAI, LCI, LEPAC/LACI</li>
-                    <li><span>Trilha 4:</span> Engenharia Civil - GEOTECNIA, LABDEST, LEMAC, L@BCIV, LABESBIM</li>
-                    <li><span>Trilha 5:</span> Computação - PET ENGCOMP, ERUS, LCAD, LPRM, NINFA, LAR</li>
-                    <li><span>Trilha 6:</span> Engenharia Mecânica - NEMOG, PET MECÂNICA, LaMEFT/DEM, Laboratório de automação e controle</li>
+                <li><span>Trilha 1:</span> Engenharia Ambiental {/*- NQUALIAR, LAGESA, LABSAN, LABHIDRO*/}</li>
+                    <li><span>Trilha 2:</span> Engenharia Elétrica 01 {/*- LABTEL, NERDS, NTA e Laboratório de Intrumentação Dinâmica*/}</li>
+                    <li><span>Trilha 3:</span> Engenharia Elétrica 02 {/*- LABVISIO, PET ELÉTRICA, LAI, LCI, LEPAC/LACI*/}</li>
+                    <li><span>Trilha 4:</span> Engenharia Civil {/*- GEOTECNIA, LABDEST, LEMAC, L@BCIV, LABESBIM*/}</li>
+                    <li><span>Trilha 5:</span> Computação {/*- PET ENGCOMP, ERUS, LCAD, LPRM, NINFA, LAR*/}</li>
+                    <li><span>Trilha 6:</span> Engenharia Mecânica {/*- NEMOG, PET MECÂNICA, LaMEFT/DEM, Laboratório de automação e controle*/}</li>
                 </ul>
                             
                     

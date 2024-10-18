@@ -173,10 +173,13 @@ const Home: NextPage = () => {
           </li>
           <li>Mostra de projetos.</li>
           <li>Palestra Pocket sobre Inteligência Artificial (13/11 às 10h).</li>
-          <li>Apresentação da banda dos professores.</li>
+          <li>Apresentação da banda dos professores do CT.</li>
         </ol>
 
-        <p>Em breve programação completa.</p>
+        <p>
+          A banda EngRockers, composta por alguns professores do Centro Tecnológico, 
+          vai levantar o astral com muito Rock'n Roll no estacionamento do CT 4. 
+        </p>
 
         {/* <h1>INSCRIÇÕES ABREM NO DIA 01/11/2022</h1> */}
       </div>

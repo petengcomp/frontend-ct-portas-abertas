@@ -109,7 +109,7 @@ export default function NavBar({ localPage }: NavBarProps) {
 
         <Link href="./pockets">
           <li id={page == "pockets" ? styles.selected : ""}>
-            PALESTRAS POCKET
+            PALESTRA POCKET
           </li>
         </Link>
       </ul>
