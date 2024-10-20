@@ -39,7 +39,7 @@ export default function NavBar({ localPage }: NavBarProps) {
           content="Espaço dedicado à inscrição no evento CT de Portas Abertas da UFES, venha conhecer!"
         />
         <meta
-          content="CT de Portas Abertas - UFES - ES - 2022"
+          content="CT de Portas Abertas - UFES - ES"
           property="og:title"
         />
       </Head>
