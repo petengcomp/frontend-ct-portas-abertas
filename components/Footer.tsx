@@ -8,7 +8,7 @@ import FESTLogo from '../assets/FEST.svg'
 import PROEXLogo from '../assets/PROEXLogo.png'
 import FINDESLogo from '../assets/FINDES.svg'
 import CtJuniorLogo from '../assets/CT Júnior.svg'
-import VitoriaBajaLogo from '../assets/Vitória Baja Branca.svg'
+import VitoriaBajaLogo from '../assets/Vitória Baja Branca.png'
 import CREALogo from '../assets/CREALogo.png'
 import SEELogo from '../assets/SEELogo.png'
 import PETMECANICALogo from '../assets/PETMECANICALogo.png'
@@ -30,25 +30,24 @@ export default function Footer() {
       <div className={styles.innerContainer}>
         <h3>Apoio</h3>
         <div className={styles.colaboratorsContainer}>
-          <div><Image src={IntrocompLogo} alt="Introcomp logo rodape" layout="fill"  objectFit={'contain'} /></div>
-          <div><Image src={PETLogo} alt="PET logo rodape" layout="fill"  objectFit={'contain'} /></div>
           <div><Image src={FESTLogo} alt="FEST logo rodape" layout="fill"  objectFit={'contain'} /></div>
           <div><Image src={PROEXLogo} alt="PROEX logo rodape" layout="fill"  objectFit={'contain'} /></div>
           <div><Image src={FINDESLogo} alt="FINDES logo rodape" layout="fill"  objectFit={'contain'} /></div>
-          
+          <div><Image src={CREALogo} alt="CREA logo rodape" layout="fill"  objectFit={'contain'} /></div>
+          <div><Image src={SEELogo} alt="SEE logo rodape" layout="fill"  objectFit={'contain'} /></div>
         </div>
 
         <div className={styles.colaboratorsContainer}>
-          <div><Image src={CtJuniorLogo} alt="CtJunior logo rodape" layout="fill"  objectFit={'contain'} /></div>
-          <div><Image src={VitoriaBajaLogo} alt="VitoriaBaja logo rodape" layout="fill"  objectFit={'contain'} /></div>
+          <div><Image src={IntrocompLogo} alt="Introcomp logo rodape" layout="fill"  objectFit={'contain'} /></div>
+          <div><Image src={PETLogo} alt="PET logo rodape" layout="fill"  objectFit={'contain'} /></div>
           <div id={styles.petmeclogo}><Image src={PETMECANICALogo} alt="PET Mecanica logo rodape" layout="fill"  objectFit={'contain'} /></div>
           <div><Image src={PETELETRICALogo} alt="PET Eletrica logo rodape" layout="fill"  objectFit={'contain'} /></div>          
         </div>
 
         <div className={styles.colaboratorsContainer}>
-          <div><Image src={CREALogo} alt="CREA logo rodape" layout="fill"  objectFit={'contain'} /></div>
+          <div><Image src={CtJuniorLogo} alt="CtJunior logo rodape" layout="fill"  objectFit={'contain'} /></div>
+          <div><Image src={VitoriaBajaLogo} alt="VitoriaBaja logo rodape" layout="fill"  objectFit={'contain'}/></div>
           <div><Image src={SolaresLogo} alt="Solares logo rodape" layout="fill"  objectFit={'contain'} /></div>
-          <div><Image src={SEELogo} alt="SEE logo rodape" layout="fill"  objectFit={'contain'} /></div>
         </div>
 
       </div>
