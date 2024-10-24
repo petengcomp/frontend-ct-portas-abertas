@@ -10,7 +10,7 @@ import FINDESLogo from '../assets/FINDES.svg'
 import CtJuniorLogo from '../assets/CT Júnior.svg'
 import VitoriaBajaLogo from '../assets/Vitória Baja Branca.png'
 import CREALogo from '../assets/CREALogo.png'
-import SEELogo from '../assets/SEELogo.png'
+import CESANLogo from '../assets/CESAN.png'
 import PETMECANICALogo from '../assets/PETMECANICALogo.png'
 import PETELETRICALogo from '../assets/PETELETRICALogo.png'
 import SolaresLogo from '../assets/Projeto Solares.png'
@@ -34,7 +34,7 @@ export default function Footer() {
           <div><Image src={PROEXLogo} alt="PROEX logo rodape" layout="fill"  objectFit={'contain'} /></div>
           <div><Image src={FINDESLogo} alt="FINDES logo rodape" layout="fill"  objectFit={'contain'} /></div>
           <div><Image src={CREALogo} alt="CREA logo rodape" layout="fill"  objectFit={'contain'} /></div>
-          <div><Image src={SEELogo} alt="SEE logo rodape" layout="fill"  objectFit={'contain'} /></div>
+          <div><Image src={CESANLogo} alt="CESAN logo rodape" layout="fill"  objectFit={'contain'} /></div>
         </div>
 
         <div className={styles.colaboratorsContainer}>

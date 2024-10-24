@@ -28,13 +28,7 @@ const Home: NextPage = () => {
 
       <div className={styles.textContainer}>
         <p>
-          Em breve o {'"'}CT de Portas Abertas{'"'} edição 2024! O evento faz
-          parte da Mostra de Profissões da Prograd, que neste ano irá ocorrer
-          nos dias 12 e 13 de novembro de 2024 O CT de Portas Abertas tem com
-          objetivo de divulgar e fomentar cursos de engenharia e tecnologia do
-          CT para os alunos do ensino médio e técnico. O evento oferecerá aos
-          estudantes de Ensino Médio e Técnico do Estado informações importantes
-          sobre os cursos do CT.
+        Em breve, a edição 2024 do CT de Portas Abertas! O evento faz parte da Mostra de Profissões da Prograd, que ocorrerá nos dias 12 e 13 de novembro de 2024. O CT de Portas Abertas tem como objetivo divulgar e promover os cursos de Engenharia e Tecnologia do Centro Tecnológico da UFES para alunos do ensino médio e técnico, sendo uma oportunidade única de obter informações valiosas sobre as diversas áreas de atuação dos cursos oferecidos pelo CT.
           <br />
           <br />
           Atividades previstas na programação do evento:
