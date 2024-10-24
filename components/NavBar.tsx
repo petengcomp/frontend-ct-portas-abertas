@@ -8,7 +8,7 @@ import { FiMenu } from "react-icons/fi";
 
 import UfesLogo from "../assets/UfesLogo.svg";
 import SDCLogo from "../assets/SDCLogo.png";
-import MOSTRALogo from "../assets/MOSTRALogo.svg";
+import MOSTRALogo from "../assets/MOSTRALogo.png";
 
 import { PROGRADURL } from "./ProGrad";
 
